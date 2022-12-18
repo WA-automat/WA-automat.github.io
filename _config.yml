@@ -137,3 +137,20 @@ wordCount:
   postWordCount: true
   min2read: true
   totalCount: true
+
+# 页面配置
+aomori_logo: /images/mango.png
+aomori_logo_typed_animated: true
+# 头部菜单
+aomori_menu:
+  Home: /
+  Archives: /archives
+# 侧边栏
+aomori_widgets:
+  - toc # 文章导航
+  - category  #文章分类
+  - tag # 文章标签
+  - recent_posts  # 最新文章
+  - archive #文章归档
+aomori_copyright: true # or false
+aomori_favicon: 🎮
