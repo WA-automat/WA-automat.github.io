@@ -44,7 +44,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace: ''
@@ -62,7 +62,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 12
   order_by: -date
 
 # Category & Tag
@@ -103,5 +103,37 @@ theme: aomori
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/WA-automat/WA_automat.github.io
-  
+  repo: git@github.com:WA-automat/WA-automat.github.io.git
+  branch: master
+
+# emoji表情支持
+ithubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
+
+# 代码高亮配置
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'tomorrow'
+  line_number: false    # default false
+  custom_css:
+
+# 主页搜索配置
+search:
+  path: search.xml
+  field: post
+
+# 中文链接配置
+permalink_pinyin:
+  enable: true
+  separator: '-' # default: '-'
+
+# 文章字数统计
+wordCount:
+  enable: false # 将这个值设置为 true 即可.
+  postWordCount: true
+  min2read: true
+  totalCount: true
