@@ -19,6 +19,8 @@
     
 
     
+    <meta property="algolia:search" data-application-id="JDZVFJELGS" data-api-key="56b09338d8198ec9dcf7f73e4b08627c" data-index-name="search">
+    
 
     
 
@@ -48,7 +50,7 @@
             
         }
         window.aomori_logo_typed_animated = true
-        window.aomori_search_algolia = false
+        window.aomori_search_algolia = true
 
     </script>
 
@@ -165,8 +167,18 @@
             </section>
 
             
-            <aside class="sidebar ">
+            <aside class="sidebar sidebar-search-fix">
                 
+
+    <div class="search">
+    <div class="has-icon-right">
+        <input type="text" class="form-input" id="search" placeholder="SEARCH" autocomplete="off">
+        <div class="form-icon">
+            <ion-icon name="search"></ion-icon>
+        </div>
+    </div>
+    <div class="search-result" id="search-ps"></div>
+</div>
 
 
 <div class="widget" id="widget">
