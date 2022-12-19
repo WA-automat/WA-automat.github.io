@@ -71,6 +71,8 @@
     
 
     
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    
 
     
 
@@ -85,6 +87,16 @@
     <script>
         window.isPost = true
         window.aomori = {
+            
+            gitalk: {
+                enable: true,
+                clientID: "46b5fc59dfefb7f8a614",
+                clientSecret: "1a7e1ccc7cc0f8ae25dccc45d68c6861db2c8375",
+                repo: "https://github.com/WA-automat/WA-automat.github.io",
+                owner: "WA-automat",
+                admin: ["WA-automat",],
+                distractionFreeMode: true // Facebook-like distraction free mode  // Facebook-like distraction free mode
+            },
             
             
             
@@ -276,7 +288,7 @@
     
 
     <section class="share">
-        <div class="share-title">分享</div>
+        <div class="share-title">share</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=第一篇博客 - WA_automat的博客&url=https%3A%2F%2Fexample.com%2F2022%2F12%2F18%2F%25E7%25AC%25AC%25E4%25B8%2580%25E7%25AF%2587%25E5%258D%259A%25E5%25AE%25A2%2F">
             <ion-icon name="logo-twitter"></ion-icon>
@@ -299,6 +311,10 @@
 
 
 
+
+<section class="comments">
+    <div id="gitalk-container"></div>
+</section>
 
 
 
@@ -401,6 +417,8 @@
 
 <script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
 
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 
 
