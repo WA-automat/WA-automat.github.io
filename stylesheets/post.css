@@ -1,3 +1,10 @@
+.post-inner-html {
+	margin-top: 60px;
+	margin-bottom: 60px;
+	padding: 25px;
+	-webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+	-moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+}
 
 .post-inner-html {
 	line-height: 1.8;
