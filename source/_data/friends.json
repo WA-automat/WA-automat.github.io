@@ -1,0 +1,42 @@
+[
+  {
+    "category": "我的账号",
+    "data": [
+      {
+        "name": "github",
+        "url": "https://github.com/WA-automat"
+      },
+      {
+        "name": "StackOverflow",
+        "url": "https://stackoverflow.com/users/19773421/wa-automat"
+      }
+    ]
+  },
+  {
+    "category": "我的刷题网站",
+    "data": [
+      {
+        "name": "codeforces",
+        "url": "https://codeforces.com/profile/L_zx"
+      },
+      {
+        "name": "洛谷",
+        "url": "https://www.luogu.com.cn/user/592342"
+      },
+      {
+        "name": "Acwing",
+        "url": "https://www.acwing.com/user/myspace/index/201055/"
+      },
+      {
+        "name": "ZOJ",
+        "url": "https://zoj.pintia.cn/profile/statistics"
+      }
+    ]
+  },
+  {
+    "category": "友情链接",
+    "data": [
+
+    ]
+  }
+]
