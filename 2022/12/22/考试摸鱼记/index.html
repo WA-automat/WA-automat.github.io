@@ -105,9 +105,7 @@
 
     </script>
 
-<meta name="generator" content="Hexo 6.3.0">
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -219,7 +217,9 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-coldark-cold.css" type="text/css"></head>
+</style>
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-coldark-cold.css" type="text/css"></head>
 
 <body>
 
@@ -340,7 +340,7 @@ mjx-container[display="true"] + br {
 
             
             <div class="article-busuanzi">
-                <span id="busuanzi_value_page_pv">N</span> 人看过
+                <span id="busuanzi_value_page_pv">N</span> views
             </div>
             
 
@@ -358,15 +358,15 @@ mjx-container[display="true"] + br {
 <img src="/2022/12/22/%E8%80%83%E8%AF%95%E6%91%B8%E9%B1%BC%E8%AE%B0/期末试题.png" alt="期末试题" style="zoom:38%;">
 
 <h5 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a><strong>题目一</strong></h5><p>这题还挺见的，有点歧义。</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
 using namespace std;
 double x;
 // 获取手续费的函数
 double getSub(double x) {
-	if (x &lt;= 2000) return 0;
-	else if (x &lt;= 5000) return 0.05 * (x - 2000);
-	else if (x &lt;= 10000) return 0.1 * (x - 5000) + getSub(5000);
-	else return 0.15 * (x - 10000) + getSub(10000);
+    if (x <= 2000) return 0;
+    else if (x <= 5000) return 0.05 * (x - 2000);
+    else if (x <= 10000) return 0.1 * (x - 5000) + getSub(5000);
+    else return 0.15 * (x - 10000) + getSub(10000);
 }
 // 这里题目有歧义
 // 到底是超过了金额就直接按照该金额的百分比去算
@@ -374,108 +374,112 @@ double getSub(double x) {
 // 如果是第一种算法的话，2001获取的实际收入小于2000的实际收入(这显然不合理)
 // 因此我们按照第二种算法计算手续费
 int main(void) {
-	// 1. 显示手续费的收取标准
-	cout &lt;&lt; "金额2000元以下，不收手续费" &lt;&lt; endl;
-	cout &lt;&lt; "金额2001元-5000元，按5%收取" &lt;&lt; endl;
-	cout &lt;&lt; "金额5001元-10000元，按10%收取" &lt;&lt; endl;
-	cout &lt;&lt; "金额10000元以上，按15%收取" &lt;&lt; endl;
+    // 1. 显示手续费的收取标准
+    cout << "金额2000元以下，不收手续费" << endl;
+    cout << "金额2001元-5000元，按5%收取" << endl;
+    cout << "金额5001元-10000元，按10%收取" << endl;
+    cout << "金额10000元以上，按15%收取" << endl;
 
-	// 输入
-	cout &lt;&lt; "请输入业务收入：" &lt;&lt; endl;
-	cin &gt;&gt; x;
+    // 输入
+    cout << "请输入业务收入：" << endl;
+    cin >> x;
 
-	// 2. 显示业务金额、对应的手续费和实际收入
-	cout &lt;&lt; "业务金额：" &lt;&lt; x &lt;&lt; endl;
-	double sub = getSub(x);
-	cout &lt;&lt; "对应的手续费：" &lt;&lt; sub &lt;&lt; endl;
-	cout &lt;&lt; "实际收入：" &lt;&lt; x - sub &lt;&lt; endl;
-	return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a><strong>第二题</strong></h5><p>这题也见，也有歧义</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
-#include&lt;cmath&gt;
+    // 2. 显示业务金额、对应的手续费和实际收入
+    cout << "业务金额：" << x << endl;
+    double sub = getSub(x);
+    cout << "对应的手续费：" << sub << endl;
+    cout << "实际收入：" << x - sub << endl;
+    return 0;
+}
+</code></pre>
+<h5 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a><strong>第二题</strong></h5><p>这题也见，也有歧义！</p>
+<p>这里a如果不是个位数咋办？</p>
+<pre class=" language-c++"><code class="language-c++">#include<iostream>
+#include<cmath>
 using namespace std;
 int n, a;
 // 求x的位数
 int digit(int x) {
-	int dig = 0;
-	for (; x; x /= 10, ++dig);
-	return dig;
+    int dig = 0;
+    for (; x; x /= 10, ++dig);
+    return dig;
 }
 // 求s
 int getS(int a, int n) {
-	int s = a;
-	int tmp = a;
-	// a可能不是个位数
-	int dig = digit(a);
-	while (--n) {
-		// tmp为新增的每一项
-		tmp *= pow(10, dig);
-		tmp += a;
+    int s = a;
+    int tmp = a;
+    // a可能不是个位数
+    int dig = digit(a);
+    while (--n) {
+        // tmp为新增的每一项
+        tmp *= pow(10, dig);
+        tmp += a;
 
-		// 累加至s中
-		s += tmp;
-	}
-	return s;
+        // 累加至s中
+        s += tmp;
+    }
+    return s;
 }
 int main(void) {
 
-	cout &lt;&lt; "请分别输入n和a：" &lt;&lt; endl;
-	cin &gt;&gt; n &gt;&gt; a;
+    cout << "请分别输入n和a：" << endl;
+    cin >> n >> a;
 
-	// 输入非法
-	while (n &lt;= 0 || a &lt;= 0) {
-		cout &lt;&lt; "输入非法，请重新输入：" &lt;&lt; endl;
-		cin &gt;&gt; n &gt;&gt; a;
-	}
+    // 输入非法
+    while (n <= 0 || a <= 0) {
+        cout << "输入非法，请重新输入：" << endl;
+        cin >> n >> a;
+    }
 
-	// 显示计算后的值
-	cout &lt;&lt; "s的值等于：" &lt;&lt; endl;
-	cout &lt;&lt; getS(a, n) &lt;&lt; endl;
-	return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a><strong>第三题</strong></h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+    // 显示计算后的值
+    cout << "s的值等于：" << endl;
+    cout << getS(a, n) << endl;
+    return 0;
+}
+</code></pre>
+<h5 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a><strong>第三题</strong></h5><pre class=" language-c++"><code class="language-c++">#include<iostream>
 using namespace std;
 int a[6], x;
 void insert(int* a, int x) {
-	// 找到要插入的位置
-	int idx;
-	for (idx = 0; idx &lt; 5; ++idx) {
-		if (a[idx] &gt; x) break;
-	}
+    // 找到要插入的位置
+    int idx;
+    for (idx = 0; idx < 5; ++idx) {
+        if (a[idx] > x) break;
+    }
 
-	// 向后移动一位
-	for (int i = 4; i &gt;= idx; --i) a[i + 1] = a[i];
+    // 向后移动一位
+    for (int i = 4; i >= idx; --i) a[i + 1] = a[i];
 
-	// 将新数据插入指定位置
-	a[idx] = x;
+    // 将新数据插入指定位置
+    a[idx] = x;
 }
 int main(void) {
-	// 输入原数组
-	cout &lt;&lt; "请输入从小到大顺序的5个整数:" &lt;&lt; endl;
-	for (int i = 0; i &lt; 5; ++i) cin &gt;&gt; a[i];
+    // 输入原数组
+    cout << "请输入从小到大顺序的5个整数:" << endl;
+    for (int i = 0; i < 5; ++i) cin >> a[i];
 
-	// 输出原数组
-	cout &lt;&lt; "原数组:" &lt;&lt; endl;
-	for (int i = 0; i &lt; 5; ++i) cout &lt;&lt; a[i] &lt;&lt; ' ';
-	cout &lt;&lt; endl;
-	
-	// 输入插入元素并插入数组中
-	cout &lt;&lt; "请输入你要插入的元素:" &lt;&lt; endl;
-	cin &gt;&gt; x;
-	insert(a, x);
+    // 输出原数组
+    cout << "原数组:" << endl;
+    for (int i = 0; i < 5; ++i) cout << a[i] << ' ';
+    cout << endl;
+    
+    // 输入插入元素并插入数组中
+    cout << "请输入你要插入的元素:" << endl;
+    cin >> x;
+    insert(a, x);
 
-	// 输出插入后的数组
-	cout &lt;&lt; "插入后的数组" &lt;&lt; endl;
-	for (int i = 0; i &lt; 6; ++i) cout &lt;&lt; a[i] &lt;&lt; ' ';
-	return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><del>没有出乎我的意料，有歧义，简单但恶心你</del></p>
-<p>第三题本来还想写个二分，想了想还是不炫技了</p>
+    // 输出插入后的数组
+    cout << "插入后的数组" << endl;
+    for (int i = 0; i < 6; ++i) cout << a[i] << ' ';
+    return 0;
+}
+</code></pre>
+<p><del>没有出乎我的意料，有歧义，简单但恶心你，让你在出分前睡不好觉</del></p>
+<p>第三题本来还想写个二分，想了想还是不炫技了。</p>
 <p>好啦摸鱼结束！开始检查然后交卷啦！！！</p>
+<hr>
+<p>update: 2022/12/22 16:56</p>
+<p>考完问了对象and几个朋友，确实分成了两波人，所以是题目问题。</p>
 
         </div>
 
@@ -488,7 +492,7 @@ int main(void) {
   
   
     <a href="/2022/12/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">precedente</div>
+      <div class="article-nav-caption">前の記事</div>
       <div class="article-nav-title">第一篇博客</div>
     </a>
   
@@ -496,7 +500,7 @@ int main(void) {
 
 
     <section class="share">
-        <div class="share-title">share</div>
+        <div class="share-title">シェア</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=考试摸鱼记 - WA_automat的博客&url=https%3A%2F%2Fwa-automat.github.io%2F2022%2F12%2F22%2F%25E8%2580%2583%25E8%25AF%2595%25E6%2591%25B8%25E9%25B1%25BC%25E8%25AE%25B0%2F">
             <ion-icon name="logo-twitter"></ion-icon>
