@@ -1,11 +1,13 @@
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
 body {
-    cursor: url(https://cdn.jsdelivr.net/gh/kaix2301/pictures/img202201071208706.cur), auto;
+    overflow-y: hidden;
+    background: #eaeaea;
+    cursor: url(https://yjlaugus.gitee.io/blog/img/body/OW-Arrow.cur), auto;
 }
 
 a, img {
-    cursor: url(https://cdn.jsdelivr.net/gh/kaix2301/pictures/img202201071205091.cur), auto !important;
+    cursor: url(https://yjlaugus.gitee.io/blog/img/body/OW-Hand.cur), auto !important;
 }
 
 
