@@ -4,7 +4,7 @@ body {
     cursor: url(https://yjlaugus.gitee.io/blog/img/body/OW-Arrow.cur), auto;
 }
 
-a, img {
+a, img, button, li {
     cursor: url(https://yjlaugus.gitee.io/blog/img/body/OW-Hand.cur), auto !important;
 }
 
