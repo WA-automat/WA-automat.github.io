@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>【算法导论】：红黑树 | WA_automat的博客</title>
+
+    <meta name="description" content="&lt;p&gt;摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。&lt;/p&gt;">
+    <meta name="keywords" content="-ACMer -Ctfer">
+
+    
+
+    <meta property="og:locale" content="zh-CN" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "【算法导论】：红黑树 | WA_automat的博客"  />
+    <meta property="og:description" content= "&lt;p&gt;摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。&lt;/p&gt;" />
+    <meta property="og:url" content="https://wa-automat.github.io/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="WA_automat" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;p&gt;摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。&lt;/p&gt;" />
+    <meta name="twitter:title" content="【算法导论】：红黑树 | WA_automat的博客"/>
+    <meta name="twitter:description" content="&lt;p&gt;摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。&lt;/p&gt;"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;p&gt;摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。&lt;/p&gt;",
+            "author": { "@type": "Person", "name": "WA_automat" },
+            "@type": "BlogPosting",
+            "url": "https://wa-automat.github.io/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://wa-automat.github.io/images/mango.jpg"
+            },
+            "name": "WA_automat"
+            },
+            "headline": "【算法导论】：红黑树 | WA_automat的博客",
+            "datePublished": "2023-01-19T06:31:34.000Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://wa-automat.github.io/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+    <meta property="algolia:search" data-application-id="JDZVFJELGS" data-api-key="56b09338d8198ec9dcf7f73e4b08627c" data-index-name="search">
+    
+
+    
+
+    
+
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+    
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            gitalk: {
+                enable: true,
+                clientID: "46b5fc59dfefb7f8a614",
+                clientSecret: "1a7e1ccc7cc0f8ae25dccc45d68c6861db2c8375",
+                repo: "blog-comments",
+                owner: "WA-automat",
+                admin: ["WA-automat",],
+                distractionFreeMode: true // Facebook-like distraction free mode  // Facebook-like distraction free mode
+            },
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = true
+
+    </script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
+
+<body>
+
+<div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-avatar avatar avatar-sm">
+                <img src="/images/mango.jpg" alt="WA_automat">
+            </div>
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>WA_automat的博客</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+                <a href="/playlist">Playlist</a>
+                
+                <a href="/friends">Friends</a>
+                
+                <a href="/photography">Photography</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/WA-automat">
+        <ion-icon name="logo-github"></ion-icon>
+    </a>
+
+    <a class="social" target="_blank" href="/2022/12/18/第一篇博客/wechat.jpg">
+        <ion-icon name="logo-wechat"></ion-icon>
+    </a>
+
+    <a class="social" target="_blank" href="https://codeforces.com/profile/L_zx">
+        <ion-icon name="code-slash-outline"></ion-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                    <a href="/playlist">Playlist</a>
+                    
+                    <a href="/friends">Friends</a>
+                    
+                    <a href="/photography">Photography</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="main">
+        <section class="inner">
+            <section class="inner-main">
+                <div class="post">
+    <article id="post-cld2q621y00000kvif9pphqph" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      【算法导论】：红黑树
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2023-01-19T06:31:34.000Z" itemprop="datePublished">2023-01-19</time>
+</div>
+
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%95%83%E4%B9%A6/" rel="tag">啃书</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" rel="tag">编程语言</a></li></ul>
+            </div>
+            
+
+            
+            <div class="article-busuanzi">
+                <span id="busuanzi_value_page_pv">N</span> 人看过
+            </div>
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。</p>
+<span id="more"></span>
+
+<h3 id="红黑树性质与介绍"><a href="#红黑树性质与介绍" class="headerlink" title="红黑树性质与介绍"></a><strong>红黑树性质与介绍</strong></h3><p>红黑树是一种平衡二叉树的实现方法，相比AVL树，在删除操作中他的统计效率会更高，最多进行三次<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.618ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2041 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(1152,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(1652,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>的旋转，而AVL树在最坏情况下，旋转的次数为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="7.695ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 3401 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(1450,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1935,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(2412,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3012,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>。</p>
+<p>红黑树查找、插入、删除的时间复杂度最坏为 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="7.695ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 3401 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(1450,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1935,0)"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="mi" transform="translate(2412,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3012,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></p>
+<p>红黑树的五个性质：</p>
+<ol>
+<li>每个节点要么是红的，要么是黑的；</li>
+<li>根节点是黑的；</li>
+<li>每个叶子节点（叶子节点即指树尾端NIL指针或NULL结点）都是黑的；</li>
+<li>每个红色节点必须有两个黑色的子节点；</li>
+<li>从任一节点到其每个叶子节点的所有路径都包含相同数目的黑色节点（这个性质保证了：最长路径长度不超过最短路径长度的2倍）</li>
+</ol>
+<p>红黑树的实现：RBtree.hpp</p>
+<p>由于红黑树比较难实现，这里将相关代码也进行部分展示。</p>
+<h3 id="红黑树节点定义"><a href="#红黑树节点定义" class="headerlink" title="红黑树节点定义"></a><strong>红黑树节点定义</strong></h3><p>为方便实现红黑树，这里需要定义五个成员变量，分别为：</p>
+<ol>
+<li>节点颜色</li>
+<li>节点的数据域（这里是实现了类似STL中map的键值对数据域）</li>
+<li>父节点与左右孩子节点</li>
+</ol>
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename K, typename V&gt;
+class RBTreeNode {
+public:
+
+	// 键值对类型
+	using Pair = pair&lt;K, V&gt;;
+
+	// 成员变量
+	Color color;
+	Pair kv;
+	RBTreeNode&lt;K, V&gt;* parent;
+	RBTreeNode&lt;K, V&gt;* left;
+	RBTreeNode&lt;K, V&gt;* right;
+
+	// 默认构造函数
+	RBTreeNode() :color(Color::RED), kv(make_pair(K(), V())), parent(nullptr), left(nullptr), right(nullptr) {};
+
+	// 根据键值对的构造函数
+	RBTreeNode(K key, V val) : color(Color::RED), kv(make_pair(key, val)), parent(nullptr), left(nullptr), right(nullptr) {};
+
+	// 默认新插入的节点都是红色节点
+};</code></pre>
+
+<h3 id="红黑树完整实现"><a href="#红黑树完整实现" class="headerlink" title="红黑树完整实现"></a><strong>红黑树完整实现</strong></h3><p><img src="/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/image-20230119144453611.png" alt="image-20230119144453611"></p>
+<p>算法导论中给出了如上的三种数据结构类型，实际实现应选用(a)、(b)两图中的结构，(c)仅是为在书中方便表示而采用的简便写法。为提升数据结构的空间效益，本文使用的结构与(b)图相似，即：节点若没有孩子节点或父节点，则其对应的指针均指向同一个哨兵节点，该哨兵节点为黑色节点。</p>
+<h4 id="旋转操作"><a href="#旋转操作" class="headerlink" title="旋转操作"></a>旋转操作</h4><p>红黑树的旋转操作类似于AVL树，这里不再赘述。</p>
+<h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><ol>
+<li>按照二叉平衡树的方式插入红黑树节点（节点默认为红色节点）</li>
+<li>检测新节点的插入是否会影响红黑树的五个性质</li>
+</ol>
+<h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h4><p>类似于插入操作，但在删除前需要判断待删除节点是否存在，若不存在，应提前返回。</p>
+<h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a><strong>完整代码</strong></h4><pre class="language-C++" data-language="C++"><code class="language-C++">template&lt;typename K, typename V&gt;
+class RBTree {
+
+	// 公有成员
+public:
+
+	// 键值对类型
+	using Pair = pair&lt;K, V&gt;;
+
+	// 节点指针类型
+	using pointer = RBTreeNode&lt;K, V&gt;*;
+
+	// 构造函数，起始时，红黑树为空
+	RBTree() {
+		nil = new RBTreeNode&lt;K, V&gt;();
+		nil-&gt;left = nil-&gt;right = nil-&gt;parent = nil;
+		root = nil;
+		nil-&gt;color = Color::BLACK;
+	}
+
+	// 析构函数
+	~RBTree() {
+		destroy(root);
+		delete nil;
+		nil = nullptr;
+	}
+
+	// 插入新节点
+	void insert(const K&amp; key, const V&amp; val) {
+
+		// 指向哨兵与根节点
+		pointer p = nil;
+		pointer s = root;
+
+		// 遍历到合适的位置
+		while (s != nil) {
+
+			// 当这次插入的键已经存在过的时候，忽略这次插入
+			if (key == s-&gt;kv.first) return;
+
+			// p始终设置为s的父节点
+			p = s;
+			if (key &lt; s-&gt;kv.first) s = s-&gt;left;
+			else if (key &gt; s-&gt;kv.first) s = s-&gt;right;
+		}
+
+		// s此时为nil
+		s = new RBTreeNode&lt;K, V&gt;(key, val);
+		s-&gt;left = s-&gt;right = s-&gt;parent = nil;
+
+		// 当RBTree为空时
+		if (p == nil) {
+			root = s;
+			root-&gt;parent = p;
+		}
+		// 当RBTree不为空时
+		else {
+			if (key &lt; p-&gt;kv.first) p-&gt;left = s;
+			else if (key &gt; p-&gt;kv.first) p-&gt;right = s;
+			s-&gt;parent = p;
+		}
+
+		// 红黑树平衡
+		insert_fixed(s);
+
+	}
+
+	// 插入新节点
+	void insert(K&amp;&amp; key, const V&amp; val) {
+
+		// 指向哨兵与根节点
+		pointer p = nil;
+		pointer s = root;
+
+		// 遍历到合适的位置
+		while (s != nil) {
+
+			// 当这次插入的键已经存在过的时候，忽略这次插入
+			if (key == s-&gt;kv.first) return;
+
+			// p始终设置为s的父节点
+			p = s;
+			if (key &lt; s-&gt;kv.first) s = s-&gt;left;
+			else if (key &gt; s-&gt;kv.first) s = s-&gt;right;
+		}
+
+		// s此时为nil
+		s = new RBTreeNode&lt;K, V&gt;(key, val);
+		s-&gt;left = s-&gt;right = s-&gt;parent = nil;
+
+		// 当RBTree为空时
+		if (p == nil) {
+			root = s;
+			root-&gt;parent = p;
+		}
+		// 当RBTree不为空时
+		else {
+			if (key &lt; p-&gt;kv.first) p-&gt;left = s;
+			else if (key &gt; p-&gt;kv.first) p-&gt;right = s;
+			s-&gt;parent = p;
+		}
+
+		// 红黑树平衡
+		insert_fixed(s);
+
+	}
+
+	// 插入新节点
+	void insert(const K&amp; key, V&amp;&amp; val) {
+
+		// 指向哨兵与根节点
+		pointer p = nil;
+		pointer s = root;
+
+		// 遍历到合适的位置
+		while (s != nil) {
+
+			// 当这次插入的键已经存在过的时候，忽略这次插入
+			if (key == s-&gt;kv.first) return;
+
+			// p始终设置为s的父节点
+			p = s;
+			if (key &lt; s-&gt;kv.first) s = s-&gt;left;
+			else if (key &gt; s-&gt;kv.first) s = s-&gt;right;
+		}
+
+		// s此时为nil
+		s = new RBTreeNode&lt;K, V&gt;(key, val);
+		s-&gt;left = s-&gt;right = s-&gt;parent = nil;
+
+		// 当RBTree为空时
+		if (p == nil) {
+			root = s;
+			root-&gt;parent = p;
+		}
+		// 当RBTree不为空时
+		else {
+			if (key &lt; p-&gt;kv.first) p-&gt;left = s;
+			else if (key &gt; p-&gt;kv.first) p-&gt;right = s;
+			s-&gt;parent = p;
+		}
+
+		// 红黑树平衡
+		insert_fixed(s);
+
+	}
+
+	// 插入新节点
+	void insert(K&amp;&amp; key, V&amp;&amp; val) {
+
+		// 指向哨兵与根节点
+		pointer p = nil;
+		pointer s = root;
+
+		// 遍历到合适的位置
+		while (s != nil) {
+
+			// 当这次插入的键已经存在过的时候，忽略这次插入
+			if (key == s-&gt;kv.first) return;
+
+			// p始终设置为s的父节点
+			p = s;
+			if (key &lt; s-&gt;kv.first) s = s-&gt;left;
+			else if (key &gt; s-&gt;kv.first) s = s-&gt;right;
+		}
+
+		// s此时为nil
+		s = new RBTreeNode&lt;K, V&gt;(key, val);
+		s-&gt;left = s-&gt;right = s-&gt;parent = nil;
+
+		// 当RBTree为空时
+		if (p == nil) {
+			root = s;
+			root-&gt;parent = p;
+		}
+		// 当RBTree不为空时
+		else {
+			if (key &lt; p-&gt;kv.first) p-&gt;left = s;
+			else if (key &gt; p-&gt;kv.first) p-&gt;right = s;
+			s-&gt;parent = p;
+		}
+
+		// 红黑树平衡
+		insert_fixed(s);
+
+	}
+
+	// 删除结点
+	void remove(const K&amp; key) {
+
+		pointer t;
+
+		// 查找到指定结点
+		if ((t = search(root, key)) != nil) remove(t);
+		else cout &lt;&lt; "Key is not exist." &lt;&lt; endl;
+
+	}
+
+	// 删除结点
+	void remove(K&amp;&amp; key) {
+
+		pointer t;
+
+		// 查找到指定结点
+		if ((t = search(root, std::move(key))) != nil) remove(t);
+		else cout &lt;&lt; "Key is not exist." &lt;&lt; endl;
+
+	}
+
+	// 查找键值对
+	V find(const K&amp; key) const {
+		return search(root, key)-&gt;kv.second;
+	}
+
+	// 查找键值对
+	V find(K&amp;&amp; key) const {
+		return search(root, std::move(key))-&gt;kv.second;
+	}
+
+	// 索引operator[]
+	// 返回键对应的值
+	V&amp; operator[](const K&amp; key) {
+
+		pointer t = search(root, key);
+		if (t != nil) return t-&gt;kv.second;
+		else {
+			insert(key, std::move(V()));
+			return search(root, key)-&gt;kv.second;
+		}
+
+	}
+
+	// 索引operator[]
+	// 返回键对应的值
+	V&amp; operator[](K&amp;&amp; key) {
+
+		pointer t = search(root, std::move(key));
+		if (t != nil) return t-&gt;kv.second;
+		else {
+			insert(std::move(key), std::move(V()));
+			return search(root, std::move(key))-&gt;kv.second;
+		}
+
+	}
+
+	// 打印所有节点
+	void print(void) {
+		show(root);
+	}
+
+
+	// 私有成员
+private:
+
+	// 根节点
+	pointer root;
+
+	// 哨兵节点
+	pointer nil;
+
+	// 析构函数辅助函数
+	void destroy(pointer&amp; node) {
+		if (node == nil) return;
+		if (node-&gt;left != nil) destroy(node-&gt;left);
+		if (node-&gt;right != nil) destroy(node-&gt;right);
+		delete node;
+		node = nullptr;
+	}
+
+	// 打印函数辅助函数
+	void show(pointer&amp; node) {
+		if (node != nil) {
+			show(node-&gt;left);
+			cout &lt;&lt; "key: " &lt;&lt; node-&gt;kv.first &lt;&lt; ", " &lt;&lt; "value: " &lt;&lt; node-&gt;kv.second &lt;&lt; "; " &lt;&lt; endl;
+			show(node-&gt;right);
+		}
+	}
+
+	// 左旋转
+	void leftRotation(pointer z) {
+		
+		// 用y指向要转动的z结点
+		pointer y = z-&gt;right;
+
+		z-&gt;right = y-&gt;left;
+		if (y-&gt;left != nil) y-&gt;left-&gt;parent = z;
+		y-&gt;parent = z-&gt;parent;
+
+
+		// 交换y与z位置
+		// 当z就是根节点时
+		if (root == z) root = y;
+		else if (z == z-&gt;parent-&gt;left) z-&gt;parent-&gt;left = y;
+		else z-&gt;parent-&gt;right = y;
+
+		y-&gt;left = z;
+		z-&gt;parent = y;
+
+	}
+
+	// 右旋转
+	void rightRotation(pointer z) {
+
+		// 用y指向要转动的z结点
+		pointer y = z-&gt;left;
+
+		z-&gt;left = y-&gt;right;
+		if (y-&gt;right != nil) y-&gt;right-&gt;parent = z;
+		y-&gt;parent = z-&gt;parent;
+
+		// 交换y与z位置
+		// 当z就是根节点时
+		if (root == z) root = y;
+		else if (z == z-&gt;parent-&gt;left) z-&gt;parent-&gt;left = y;
+		else z-&gt;parent-&gt;right = y;
+
+		y-&gt;right = z;
+		z-&gt;parent = y;
+
+	}
+
+	// 插入后的调整函数
+	void insert_fixed(pointer s) {
+
+		// 叔节点
+		pointer uncle;
+
+		// 父节点为红色
+		while (s-&gt;parent-&gt;color == Color::RED) {
+			
+			// 父节点是左结点
+			if (s-&gt;parent == s-&gt;parent-&gt;parent-&gt;left) {
+
+				uncle = s-&gt;parent-&gt;parent-&gt;right;
+
+				// 叔节点也是红色
+				if (uncle-&gt;color == Color::RED) {
+
+					// 父节点和叔节点都变为黑色
+					s-&gt;parent-&gt;color = Color::BLACK;
+					uncle-&gt;color = Color::BLACK;
+
+					// 祖父结点变成红色
+					s-&gt;parent-&gt;parent-&gt;color = Color::RED;
+
+					// s指针指向祖父结点，下一次循环判断祖父结点的父节点是否为红色
+					s = s-&gt;parent-&gt;parent;
+
+				}
+
+				// 没有叔节点或叔节点为黑色
+				else {
+
+					// 调整的节点为右结点
+					if (s == s-&gt;parent-&gt;right) {
+
+						// 左转父节点
+						s = s-&gt;parent;
+						leftRotation(s);
+
+					}
+
+					// 若调整的节点在左节点，将父节点变为黑色，祖父结点变成红色，再右转祖父结点
+					s-&gt;parent-&gt;color = Color::BLACK;
+					s-&gt;parent-&gt;parent-&gt;color = Color::RED;
+					rightRotation(s-&gt;parent-&gt;parent);
+
+				}
+
+			}
+			else {
+
+				// 父节点为右节点
+				if (s-&gt;parent == s-&gt;parent-&gt;parent-&gt;right) {
+
+					uncle = s-&gt;parent-&gt;parent-&gt;left;
+
+					// 叔节点也是红色
+					if (uncle-&gt;color == Color::RED) {
+
+						// 父节点和叔节点都变为黑色
+						s-&gt;parent-&gt;color = Color::BLACK;
+						uncle-&gt;color = Color::BLACK;
+
+						// 祖父结点变成红色
+						s-&gt;parent-&gt;parent-&gt;color = Color::RED;
+
+						// s指针指向祖父结点，下一次循环判断祖父结点的父节点是否为红色
+						s = s-&gt;parent-&gt;parent;
+
+					}
+					// 没有叔节点
+					else {
+
+						if (s == s-&gt;parent-&gt;left) {
+							s = s-&gt;parent;
+							rightRotation(s);
+						}
+
+						s-&gt;parent-&gt;color = Color::BLACK;
+						s-&gt;parent-&gt;parent-&gt;color = Color::RED;
+						leftRotation(s-&gt;parent-&gt;parent);
+
+					}
+
+				}
+
+			}
+
+		}
+
+		// 根节点始终为黑色
+		root-&gt;color = Color::BLACK;
+
+	}
+
+	// 内部查找函数
+	pointer search(pointer node, const K&amp; key) const {
+		
+		// 结点为空
+		if (node == nil) return nil;
+		// 以大小来判断
+		if (node-&gt;kv.first == key) return node;
+		if (key &lt; node-&gt;kv.first) return search(node-&gt;left, key);
+		if (key &gt; node-&gt;kv.first) return search(node-&gt;right, key);
+
+	}
+
+	// 内部查找函数
+	pointer search(pointer node, K&amp;&amp; key) const {
+
+		// 结点为空
+		if (node == nil) return nil;
+		// 以大小来判断
+		if (node-&gt;kv.first == key) return node;
+		if (key &lt; node-&gt;kv.first) return search(node-&gt;left, std::move(key));
+		if (key &gt; node-&gt;kv.first) return search(node-&gt;right, std::move(key));
+
+	}
+
+	// 最大元素的指针
+	pointer maximum(pointer x) {
+		if (x-&gt;right == nil) return x;
+		return maximum(x-&gt;right);
+	}
+
+	// 最小元素的指针
+	pointer minimum(pointer x) {
+		if (x-&gt;left == nil) return x;
+		return minimum(x-&gt;left);
+	}
+
+	// 将u的子节点指向u的指针改变指向v，将v的父节点指针改变指向u的父节点
+	void transplant(pointer u, pointer v) {
+
+		// 指针改变指向
+		if (u-&gt;parent == nil) root = v;
+		else if (u == u-&gt;parent-&gt;left) u-&gt;parent-&gt;left = v;
+		else u-&gt;parent-&gt;right = v;
+		v-&gt;parent = u-&gt;parent;
+
+	}
+
+	// 内部删除函数
+	void remove(pointer z) {
+
+		pointer x = nil;
+		pointer y = z;
+		Color ycolor = y-&gt;color;
+
+		// z只有右孩子
+		if (z-&gt;left = nil) {
+			x = z-&gt;right;
+			transplant(z, z-&gt;right);
+		}
+		// z只有左孩子
+		else if (z-&gt;right == nil) {
+			x = z-&gt;left;
+			transplant(z, z-&gt;left);
+		}
+		else {
+			y = minimum(z-&gt;right);
+			ycolor = y-&gt;color;
+			x = y-&gt;right;
+			if (y-&gt;parent == z) x-&gt;parent = y;
+			else {
+				transplant(y, y-&gt;right);
+				y-&gt;right = z-&gt;right;
+				y-&gt;right-&gt;parent = y;
+			}
+			transplant(z, y);
+
+			// 改变指向
+			y-&gt;left = z-&gt;left;
+			z-&gt;left-&gt;parent = y;
+			y-&gt;color = z-&gt;color;
+		}
+
+		if (ycolor == Color::BLACK) remove_fixed(x);
+
+	}
+
+	//红黑树删除调整
+	void remove_fixed(pointer x) {
+
+		//当结点x不为根并且它的颜色不是黑色
+		while (x != root &amp;&amp; x-&gt;color == Color::BLACK) {
+
+			//x在左子树
+			if (x == x-&gt;parent-&gt;left) {
+
+				//w是x的兄结点
+				pointer w = x-&gt;parent-&gt;right; 
+
+				//情况1
+				if (w-&gt;color == Color::RED) {
+					w-&gt;color = Color::BLACK;
+					x-&gt;parent-&gt;color = Color::RED;
+					leftRotation(x-&gt;parent);
+					w = x-&gt;parent-&gt;right;
+				}
+
+				//情况2
+				if (w-&gt;left-&gt;color == Color::BLACK &amp;&amp; w-&gt;right-&gt;color == Color::BLACK) {
+					w-&gt;color = Color::RED;
+					x = x-&gt;parent;
+				}
+				else {
+
+					//情况3
+					if (w-&gt;right-&gt;color == Color::BLACK) {
+						w-&gt;color = Color::RED;
+						w-&gt;left-&gt;color = Color::BLACK;
+						rightRotation(w);
+						w = x-&gt;parent-&gt;right;
+					}
+
+					//情况4
+					w-&gt;color = w-&gt;parent-&gt;color;
+					w-&gt;parent-&gt;color = Color::BLACK;
+					w-&gt;right-&gt;color = Color::BLACK;
+					leftRotation(x-&gt;parent);
+					x = root; //结束循环
+
+				}
+
+			}
+			// x在右子树
+			else {
+
+				pointer w = x-&gt;parent-&gt;left;
+
+				//情况1
+				if (w-&gt;color == Color::RED) {
+					w-&gt;parent-&gt;color = Color::RED;
+					w-&gt;color = Color::BLACK;
+					rightRotation(x-&gt;parent);
+					w = x-&gt;parent-&gt;left;
+				}
+
+				//情况2
+				if (w-&gt;right-&gt;color == Color::BLACK &amp;&amp; w-&gt;right-&gt;color == Color::BLACK) {
+					w-&gt;color = Color::RED;
+					x = x-&gt;parent;
+				}
+				else {
+
+					//情况3
+					if (w-&gt;left-&gt;color == Color::BLACK) {
+						w-&gt;right-&gt;color = Color::BLACK;
+						w-&gt;color = Color::RED;
+						leftRotation(w);
+						w = x-&gt;parent-&gt;left;
+					}
+
+					//情况4
+					w-&gt;color = x-&gt;parent-&gt;color;
+					x-&gt;parent-&gt;color = Color::BLACK;
+					w-&gt;left-&gt;color = Color::BLACK;
+					rightRotation(x-&gt;parent);
+					x = root; //结束循环
+
+				}
+
+			}
+
+		}
+
+		// 改变颜色
+		x-&gt;color = Color::BLACK;
+
+	}
+
+};</code></pre>
+
+<p>PS：具体理论请参考算法导论第174~192页</p>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
+
+    
+
+    
+<nav class="article-nav">
+  
+  
+    <a href="/2022/12/22/%E8%80%83%E8%AF%95%E6%91%B8%E9%B1%BC%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">考试摸鱼记</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=【算法导论】：红黑树 - WA_automat的博客&url=https%3A%2F%2Fwa-automat.github.io%2F2023%2F01%2F19%2F%25E3%2580%2590%25E7%25AE%2597%25E6%25B3%2595%25E5%25AF%25BC%25E8%25AE%25BA%25E3%2580%2591%25EF%25BC%259A%25E7%25BA%25A2%25E9%25BB%2591%25E6%25A0%2591%2F">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=【算法导论】：红黑树 - WA_automat的博客&u=https%3A%2F%2Fwa-automat.github.io%2F2023%2F01%2F19%2F%25E3%2580%2590%25E7%25AE%2597%25E6%25B3%2595%25E5%25AF%25BC%25E8%25AE%25BA%25E3%2580%2591%25EF%25BC%259A%25E7%25BA%25A2%25E9%25BB%2591%25E6%25A0%2591%2F">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=【算法导论】：红黑树 - WA_automat的博客&url=https://wa-automat.github.io/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+<section class="comments">
+    <div id="gitalk-container"></div>
+</section>
+
+
+
+
+
+
+
+
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</div>
+            </section>
+        </section>
+
+        
+            <aside class="sidebar sidebar-search-fix">
+                
+
+    <div class="search">
+    <div class="has-icon-right">
+        <input type="text" class="form-input" id="search" placeholder="SEARCH" autocomplete="off">
+        <div class="form-icon">
+            <ion-icon name="search"></ion-icon>
+        </div>
+    </div>
+    <div class="search-result" id="search-ps"></div>
+</div>
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%8B%E7%BB%8D/" rel="tag">介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%95%83%E4%B9%A6/" rel="tag">啃书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" rel="tag">编程语言</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/">【算法导论】：红黑树</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/22/%E8%80%83%E8%AF%95%E6%91%B8%E9%B1%BC%E8%AE%B0/">考试摸鱼记</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+        
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#3c4859" fill-opacity="1"
+                  d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner">
+            WA_automat的博客 &copy; 2023<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a
+                    href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+
+            <!--统计-->
+            <div class="count-footer">
+                <span id="timeDate">载入天数...</span>
+                <span id="times">载入时分秒...</span>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+
+
+
+
+<script src="/dist/build.js?1654266144177.js"></script>
+
+
+<script src="/dist/custom.js?1654266144177.js"></script>
+
+
+
+    <!-- 百度链接提交 -->
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <!-- Baidu Analytics-->
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?44d67165e87c8c8572c904e6c1fef27f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+<!--统计博客时间-->
+<script>
+    const now = new Date();
+
+    function createTime() {
+        const grt = new Date("12/18/2022 21:43:03");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime() + 250);
+        const days = (now - grt) / 1000 / 60 / 60 / 24;
+        const dnum = Math.floor(days);
+        const hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        let hnum = Math.floor(hours);
+        if (String(hnum).length === 1) {
+            hnum = "0" + hnum;
+        }
+        const minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        let mnum = Math.floor(minutes);
+        if (String(mnum).length === 1) {
+            mnum = "0" + mnum;
+        }
+        const seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        let snum = Math.round(seconds);
+        if (String(snum).length === 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+
+    setInterval("createTime()", 250);
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haru02.model.json"},"display":{"position":"right","width":175,"height":350,"hOffset":230,"vOffset":60},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"dialog":{"enable":true,"hitokoto":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<!--&lt;!&ndash;动态线条背景&ndash;&gt;-->
+<!--<script type="text/javascript"-->
+<!--        color="50,50,50" opacity='0.7' zIndex="-2" count="200"-->
+<!--        src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">-->
+<!--</script>-->
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script>
+
+<!--鼠标点击特效-->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+<script>
+    "use strict";
+
+    function updateCoords(e) {
+        pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect().top
+    }
+
+    function setParticuleDirection(e) {
+        const t = anime.random(0, 360) * Math.PI / 180, a = anime.random(50, 180), n = [-1, 1][anime.random(0, 1)] * a;
+        return {x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t)}
+    }
+
+    function createParticule(e, t) {
+        var a = {};
+        return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function () {
+            ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill()
+        }, a
+    }
+
+    function createCircle(e, t) {
+        var a = {};
+        return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function () {
+            ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1
+        }, a
+    }
+
+    function renderParticule(e) {
+        for (var t = 0; t < e.animatables.length; t++) {
+            e.animatables[t].target.draw()
+        }
+    }
+
+    function animateParticules(e, t) {
+        for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) {
+            n.push(createParticule(e, t))
+        }
+        anime.timeline().add({
+            targets: n, x: function (e) {
+                return e.endPos.x
+            }, y: function (e) {
+                return e.endPos.y
+            }, radius: 0.1, duration: anime.random(1200, 1800), easing: "easeOutExpo", update: renderParticule
+        }).add({
+            targets: a,
+            radius: anime.random(80, 160),
+            lineWidth: 0,
+            alpha: {value: 0, easing: "linear", duration: anime.random(600, 800)},
+            duration: anime.random(1200, 1800),
+            easing: "easeOutExpo",
+            update: renderParticule,
+            offset: 0
+        })
+    }
+
+    function debounce(e, t) {
+        var a;
+        return function () {
+            var n = this, i = arguments;
+            clearTimeout(a), a = setTimeout(function () {
+                e.apply(n, i)
+            }, t)
+        }
+    }
+
+    var canvasEl = document.querySelector(".fireworks");
+    if (canvasEl) {
+        var ctx = canvasEl.getContext("2d"), numberOfParticules = 30, pointerX = 0, pointerY = 0, tap = "mousedown",
+            colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"], setCanvasSize = debounce(function () {
+                canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2)
+            }, 500), render = anime({
+                duration: 1 / 0, update: function () {
+                    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
+                }
+            });
+        document.addEventListener(tap, function (e) {
+            "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY))
+        }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1)
+    }
+    "use strict";
+
+    function updateCoords(e) {
+        pointerX = (e.clientX || e.touches[0].clientX) - canvasEl.getBoundingClientRect().left, pointerY = e.clientY || e.touches[0].clientY - canvasEl.getBoundingClientRect().top
+    }
+
+    function setParticuleDirection(e) {
+        var t = anime.random(0, 360) * Math.PI / 180, a = anime.random(50, 180), n = [-1, 1][anime.random(0, 1)] * a;
+        return {x: e.x + n * Math.cos(t), y: e.y + n * Math.sin(t)}
+    }
+
+    function createParticule(e, t) {
+        var a = {};
+        return a.x = e, a.y = t, a.color = colors[anime.random(0, colors.length - 1)], a.radius = anime.random(16, 32), a.endPos = setParticuleDirection(a), a.draw = function () {
+            ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.fillStyle = a.color, ctx.fill()
+        }, a
+    }
+
+    function createCircle(e, t) {
+        var a = {};
+        return a.x = e, a.y = t, a.color = "#F00", a.radius = 0.1, a.alpha = 0.5, a.lineWidth = 6, a.draw = function () {
+            ctx.globalAlpha = a.alpha, ctx.beginPath(), ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI, !0), ctx.lineWidth = a.lineWidth, ctx.strokeStyle = a.color, ctx.stroke(), ctx.globalAlpha = 1
+        }, a
+    }
+
+    function renderParticule(e) {
+        for (var t = 0; t < e.animatables.length; t++) {
+            e.animatables[t].target.draw()
+        }
+    }
+
+    function animateParticules(e, t) {
+        for (var a = createCircle(e, t), n = [], i = 0; i < numberOfParticules; i++) {
+            n.push(createParticule(e, t))
+        }
+        anime.timeline().add({
+            targets: n, x: function (e) {
+                return e.endPos.x
+            }, y: function (e) {
+                return e.endPos.y
+            }, radius: 0.1, duration: anime.random(1200, 1800), easing: "easeOutExpo", update: renderParticule
+        }).add({
+            targets: a,
+            radius: anime.random(80, 160),
+            lineWidth: 0,
+            alpha: {value: 0, easing: "linear", duration: anime.random(600, 800)},
+            duration: anime.random(1200, 1800),
+            easing: "easeOutExpo",
+            update: renderParticule,
+            offset: 0
+        })
+    }
+
+    function debounce(e, t) {
+        var a;
+        return function () {
+            var n = this, i = arguments;
+            clearTimeout(a), a = setTimeout(function () {
+                e.apply(n, i)
+            }, t)
+        }
+    }
+
+    var canvasEl = document.querySelector(".fireworks");
+    if (canvasEl) {
+        var ctx = canvasEl.getContext("2d"), numberOfParticules = 30, pointerX = 0, pointerY = 0, tap = "mousedown",
+            colors = ["#FF1461", "#18FF92", "#5A87FF", "#FBF38C"], setCanvasSize = debounce(function () {
+                canvasEl.width = 2 * window.innerWidth, canvasEl.height = 2 * window.innerHeight, canvasEl.style.width = window.innerWidth + "px", canvasEl.style.height = window.innerHeight + "px", canvasEl.getContext("2d").scale(2, 2)
+            }, 500), render = anime({
+                duration: 1 / 0, update: function () {
+                    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
+                }
+            });
+        document.addEventListener(tap, function (e) {
+            "sidebar" !== e.target.id && "toggle-sidebar" !== e.target.id && "A" !== e.target.nodeName && "IMG" !== e.target.nodeName && (render.play(), updateCoords(e), animateParticules(pointerX, pointerY))
+        }, !1), setCanvasSize(), window.addEventListener("resize", setCanvasSize, !1)
+    }
+</script>
+
+<!--飘雪特效-->
+<script>
+    /*样式一*/
+    (function($){
+        $.fn.snow = function(options){
+            var $flake = $('<div id="snowbox" />').css({'position': 'absolute','z-index':'9999', 'top': '-50px'}).html('&#10052;'),
+                documentHeight 	= $(document).height(),
+                documentWidth	= $(document).width(),
+                defaults = {
+                    minSize		: 10,
+                    maxSize		: 20,
+                    newOn		: 1000,
+                    flakeColor	: "#AFDAEF" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
+                },
+                options	= $.extend({}, defaults, options);
+            var interval= setInterval( function(){
+                var startPositionLeft = Math.random() * documentWidth - 100,
+                    startOpacity = 0.5 + Math.random(),
+                    sizeFlake = options.minSize + Math.random() * options.maxSize,
+                    endPositionTop = documentHeight - 200,
+                    endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
+                    durationFall = documentHeight * 10 + Math.random() * 5000;
+                $flake.clone().appendTo('body').css({
+                    left: startPositionLeft,
+                    opacity: startOpacity,
+                    'font-size': sizeFlake,
+                    color: options.flakeColor
+                }).animate({
+                    top: endPositionTop,
+                    left: endPositionLeft,
+                    opacity: 0.2
+                },durationFall,'linear',function(){
+                    $(this).remove()
+                });
+            }, options.newOn);
+        };
+    })(jQuery);
+    $(function(){
+        $.fn.snow({
+            minSize: 5, /* 定义雪花最小尺寸 */
+            maxSize: 50,/* 定义雪花最大尺寸 */
+            newOn: 300  /* 定义密集程度，数字越小越密集 */
+        });
+    });
+
+</script>
+</html>
