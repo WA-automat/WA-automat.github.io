@@ -150,9 +150,7 @@
 
     </script>
 
-<meta name="generator" content="Hexo 6.3.0">
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -264,7 +262,9 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
+</style>
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
 
 <body>
 
@@ -409,7 +409,7 @@ mjx-container[display="true"] + br {
 
             
             <div class="article-busuanzi">
-                <span id="busuanzi_value_page_pv">N</span> views
+                <span id="busuanzi_value_page_pv">N</span> 人看过
             </div>
             
 
@@ -459,7 +459,388 @@ public:
 
 };</code></pre>
 
-<h3 id="B树完整实现-更新ing"><a href="#B树完整实现-更新ing" class="headerlink" title="B树完整实现(更新ing):"></a><strong>B树完整实现</strong>(更新ing):</h3><pre class="language-c++" data-language="c++"><code class="language-c++"></code></pre>
+<h3 id="B树完整实现"><a href="#B树完整实现" class="headerlink" title="B树完整实现 :"></a><strong>B树完整实现</strong> :</h3><ol>
+<li>使用指针ptr时需要检查节点是否为叶子节点</li>
+<li>remove时需要将各种情况分别讨论</li>
+<li>根节点的合并和分裂才会导致B树高度的变化</li>
+</ol>
+<p><img src="/2023/01/25/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9AB%E6%A0%91/BTree.png" alt="BTree"></p>
+<pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename K, typename V&gt;
+class BTree {
+
+	// 公有成员
+public:
+
+	// 键值对类型
+	using Pair = pair&lt;K, V&gt;;
+
+	// 指针类型
+	using pointer = BTreeNode&lt;K, V&gt;*;
+
+	// 孩子节点及其对应的索引
+	using PlaceOfChild = pair&lt;pointer, int&gt;;
+
+	// 构造函数
+	BTree(int deg) :root(new BTreeNode&lt;K, V&gt;()), t(deg &gt;= 2 ? deg : 2) {}
+	BTree() :BTree(2) {}
+
+	// 析构函数
+	~BTree() {
+
+		// 实现辅助函数destroy便于析构
+		destroy(root);
+	
+	}
+
+	// 插入元素
+	void insert(const K&amp; key, const V&amp; val) {
+
+		// 指向根节点
+		pointer base = root;
+
+		// 当根节点满了
+		if (base-&gt;kvs.size() == 2 * t - 1) {
+			
+			pointer s = new BTreeNode&lt;K, V&gt;();
+			root = s;
+			s-&gt;ptrs.push_back(base);
+			splitChild(s, 0);
+			insert_notfull(s, key, val);
+
+		}
+		else insert_notfull(base, key, val);
+	}
+
+	//void remove(const K&amp; key);
+
+	// 查找函数
+	V find(const K&amp; key) {
+
+		// 使用辅助函数进行搜索
+		PlaceOfChild node = search(root, key);
+
+		// 若查询成功
+		if (node.first) {
+
+			pointer p = node.first;
+			Pair kv = p-&gt;kvs[node.second];
+			return kv.second;
+		
+		}
+		
+		// 查询不到时
+		else {
+			
+			// 放出警告
+			cout &lt;&lt; "[warn]:Query failure!" &lt;&lt; endl;
+			return V();
+
+		}
+	}
+
+	// 最小元素对应的值
+	int minimum(void) {
+		pointer p = minimum(root);
+		return p-&gt;kvs[0].second;
+	}
+
+	// 最大元素对应的值
+	int maximum(void) {
+		pointer p = maximum(root);
+		return p-&gt;kvs[p-&gt;kvs.size() - 1].second;
+	}
+
+	void remove(const K&amp; key) {
+		remove(root, key);
+	}
+
+	//void print(void);
+
+	// 私有成员
+private:
+
+	// 成员变量
+	
+	// 根节点
+	pointer root;
+
+	// 最小度数
+	int t;	//the minimum degree, more than or equal to 2
+
+
+	// 以下为各种辅助函数
+
+	// 析构辅助函数
+	void destroy(pointer&amp; node) {
+		
+		// 若节点存在，才进行销毁操作
+		if (node) {
+
+			// 删除子节点
+			for (auto item : node-&gt;ptrs) {
+				destroy(item);
+			}
+
+			// 删除自身
+			delete node;
+			node = nullptr;
+		}
+
+	}
+
+	// 搜索辅助函数
+	PlaceOfChild search(pointer node, const K&amp; key) {
+
+		// 在当前节点查找key（二分查找）
+		size_t idx = lower_bound(node-&gt;kvs.begin(), node-&gt;kvs.end(), make_pair(key, 0)) - node-&gt;kvs.begin();
+
+		// 各种情况的判断
+		// 当key在此结点中
+		if (idx &lt; node-&gt;kvs.size() &amp;&amp; node-&gt;kvs[idx].first == key) return make_pair(node, idx);
+		else if (node-&gt;ptrs.empty()) return make_pair(nullptr, 0);
+		else return search(node-&gt;ptrs[idx], key);
+	
+	}
+
+	// 当孩子结点满了，但父节点还没满
+	void splitChild(pointer x, const int i) {
+
+		pointer y = x-&gt;ptrs[i];
+		pointer z = new BTreeNode&lt;K, V&gt;();
+
+		// 将y中的一半元素移出
+		for (int j = 0; j &lt; t - 1; ++j) z-&gt;kvs.push_back(y-&gt;kvs[j + t]);
+
+		if (!y-&gt;ptrs.empty()) {
+			for (int j = 0; j &lt; t; ++j) z-&gt;ptrs.push_back(y-&gt;ptrs[j + t]);
+			for (int j = 0; j &lt; t; ++j) y-&gt;ptrs.pop_back();
+		}
+
+		x-&gt;kvs.insert(x-&gt;kvs.begin() + i, y-&gt;kvs[t - 1]);
+		x-&gt;ptrs.insert(x-&gt;ptrs.begin() + i, z);
+
+		for (int j = 0; j &lt; t; ++j) y-&gt;kvs.pop_back();
+	}
+
+	// 插入辅助函数
+	void insert_notfull(pointer node, const K&amp; key, const V&amp; val) {
+		
+		Pair item = make_pair(key, val);
+		// 在当前节点查找key（二分查找）
+		size_t idx = lower_bound(node-&gt;kvs.begin(), node-&gt;kvs.end(), make_pair(key, 0)) - node-&gt;kvs.begin();
+
+		if (node-&gt;ptrs.empty()) {
+			node-&gt;kvs.insert(node-&gt;kvs.begin() + idx, item);
+		}
+		else {
+
+			if (node-&gt;ptrs[idx]-&gt;kvs.size() == 2 * t - 1) {
+				splitChild(node, idx);
+				if (key &gt;= node-&gt;kvs[idx].first) ++idx;
+			}
+
+			insert_notfull(node-&gt;ptrs[idx], key, val);
+
+		}
+
+	}
+
+	// 最小元素
+	pointer minimum(pointer p) {
+
+		while (!p-&gt;ptrs.empty()) p = p-&gt;ptrs[0];
+		return p;
+
+	}
+
+	// 最大元素
+	pointer maximum(pointer p) {
+
+		while (!p-&gt;ptrs.empty()) p = p-&gt;ptrs[p-&gt;ptrs.size() - 1];
+		return p;
+
+	}
+
+	PlaceOfChild predecessor(pointer x, int i) {
+		
+		if (!x-&gt;ptrs.empty()) {
+			x = maximum(x-&gt;ptrs[i]);
+			return make_pair(x, x-&gt;kvs.size() - 1);
+		}
+		else if (i != 0) return make_pair(x, i - 1);
+		
+		int key = x-&gt;kvs[i].first;
+		pointer y = root;
+		vector&lt;PlaceOfChild&gt; stk;
+		while (true) {
+			if (y-&gt;kvs[0].first == key) break;
+			for (i = 0; i&lt;y-&gt;kvs.size() &amp;&amp; key&gt;y-&gt;kvs[i].first; ++i);
+			stk.push_back(make_pair(y, i));
+			y = y-&gt;ptrs[i];
+		}
+
+		PlaceOfChild p;
+		while (!stk.empty()) {
+			p = stk.back();
+			stk.pop_back();
+			if (p.second != 0) return p;
+		}
+		return make_pair(nullptr, 0);
+
+	}
+
+	PlaceOfChild successor(pointer x, int i) {
+
+		if (!x-&gt;ptrs.empty()) {
+			x = minimum(x-&gt;ptrs[i + 1]);
+			return make_pair(x, 0);
+		}
+		else if (i != x-&gt;kvs.size() - 1) return make_pair(x, i + 1);
+
+		int key = x-&gt;kvs[i].first;
+		pointer y = root;
+		vector&lt;PlaceOfChild&gt; stk;
+		while (true) {
+			if (y-&gt;kvs.back().first == key) break;
+			for (i = 0; i&lt;y-&gt;kvs.size() &amp;&amp; key&gt;y-&gt;kvs[i].first; ++i);
+			stk.push_back(make_pair(y, i));
+			y = y-&gt;ptrs[i];
+		}
+
+		PlaceOfChild p;
+		while (!stk.empty()) {
+			p = stk.back();
+			stk.pop_back();
+			if (p.second != p.first-&gt;kvs.size()) return p;
+		}
+		return make_pair(nullptr, 0);
+
+	}
+
+	// 合并
+	void combine(pointer x, pointer y, PlaceOfChild z) {
+
+		x-&gt;kvs.push_back(z.first-&gt;kvs[z.second]);
+
+		for (int i = 0; i &lt; t - 1; ++i) {
+			x-&gt;kvs.push_back(y-&gt;kvs[i]);
+		}
+
+		if (!x-&gt;ptrs.empty()) {
+			for (int i = 0; i &lt; t; ++i) {
+				x-&gt;ptrs.push_back(y-&gt;ptrs[i]);
+			}
+		}
+		delete y;
+		y = nullptr;
+
+		z.first-&gt;kvs.erase(z.first-&gt;kvs.begin() + z.second);
+
+		// 这里很奇怪会报错
+		z.first-&gt;ptrs.earse(z.first-&gt;ptrs.begin() + z.second + 1);
+
+		if (z.first-&gt;kvs.empty()) {
+			root = z.first-&gt;ptrs[z.second];
+			delete z.first;
+		}
+	}
+
+	// 删除元素辅助函数
+	void remove(pointer node, const K&amp; key) {
+
+		// 在当前节点查找key（二分查找）
+		size_t idx = lower_bound(node-&gt;kvs.begin(), node-&gt;kvs.end(), make_pair(key, 0)) - node-&gt;kvs.begin();
+
+		// 开始分情况讨论
+		if (idx &lt; node-&gt;kvs.size() &amp;&amp; node-&gt;kvs[idx].first == key) {
+
+			// 当为叶子节点
+			if (node-&gt;ptrs.empty()) node-&gt;kvs.erase(node-&gt;kvs.begin() + idx);
+			// 不为叶子节点
+			else {
+				if (node-&gt;ptrs[idx]-&gt;kvs.size() &gt;= t) {
+					PlaceOfChild preOfk = predecessor(node, idx);
+					node-&gt;kvs[idx] = preOfk.first-&gt;kvs[preOfk.second];
+					remove(node-&gt;ptrs[idx], node-&gt;kvs[idx].first);
+				}
+				else if (node-&gt;ptrs[idx + 1]-&gt;kvs.size() &gt;= t) {
+					PlaceOfChild sucOfk = successor(node, idx);
+					node-&gt;kvs[idx] = sucOfk.first-&gt;kvs[sucOfk.second];
+					remove(node-&gt;ptrs[idx + 1], node-&gt;kvs[idx].first);
+				}
+				else {
+					combine(node-&gt;ptrs[idx], node-&gt;ptrs[idx + 1], make_pair(node, idx));
+					remove(node-&gt;ptrs[idx], key);
+				}
+			}
+
+		}
+		else {
+
+			// 其他情况讨论
+			if (node-&gt;ptrs.empty()) return;
+			else if (node-&gt;ptrs[idx]-&gt;kvs.size() != t - 1) remove(node-&gt;ptrs[idx], key);
+			else {
+				pointer y, z;
+				if (idx &gt; 0 &amp;&amp; node-&gt;ptrs[idx - 1]-&gt;kvs.size() != t - 1) {
+
+					y = node-&gt;ptrs[idx - 1];
+					z = node-&gt;ptrs[idx];
+					z-&gt;kvs.insert(z-&gt;kvs.begin(), node-&gt;kvs[idx - 1]);
+
+					if (!y-&gt;ptrs.empty()) {
+
+						z-&gt;ptrs.insert(z-&gt;ptrs.begin(), y-&gt;ptrs.back());
+						y-&gt;ptrs.pop_back();
+
+					}
+
+					node-&gt;kvs[idx - 1] = y-&gt;kvs.back();
+					y-&gt;kvs.pop_back();
+					remove(z, key);
+
+				}
+				else if (idx &lt; node-&gt;ptrs.size() - 1 &amp;&amp; node-&gt;ptrs[idx + 1]-&gt;kvs.size() != t - 1) {
+					
+					y = node-&gt;ptrs[idx + 1];
+					z = node-&gt;ptrs[idx];
+					z-&gt;kvs.push_back(node-&gt;kvs[idx]);
+
+					if (!y-&gt;ptrs.empty()) {
+
+						z-&gt;ptrs.push_back(y-&gt;ptrs[0]);
+						y-&gt;ptrs.erase(y-&gt;ptrs.begin());
+
+					}
+
+					node-&gt;kvs[idx] = y-&gt;kvs[0];
+					y-&gt;kvs.erase(y-&gt;kvs.begin());
+					remove(z, key);
+
+				}
+				else if (idx &gt; 0) {
+					
+					y = node-&gt;ptrs[idx - 1];
+					z = node-&gt;ptrs[idx];
+					combine(y, z, make_pair(node, idx - 1));
+					remove(y, key);
+
+				}
+				else if (idx &lt; node-&gt;ptrs.size() - 1) {
+
+					y = node-&gt;ptrs[idx];
+					z = node-&gt;ptrs[idx + 1];
+					combine(y, z, make_pair(node, idx));
+					remove(y, key);
+
+				}
+			}
+
+		}
+
+	}
+
+};</code></pre>
 
 
         </div>
@@ -472,7 +853,7 @@ public:
 
     
   <div class="article-refer hairline">
-    <h3> 参考記事 </h3>
+    <h3> 文章参考文献 </h3>
     
     <p>
       <a target="_blank" rel="nofollow" href="https://www.cnblogs.com/yxsrt/p/12201655.html">https://www.cnblogs.com/yxsrt/p/12201655.html</a>
@@ -484,7 +865,7 @@ public:
     
   <div class="article-copyright hairline">
     <p>
-      本記事は  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">「表示 - 非営利 - 改変禁止 4.0 国際 (CC BY-NC-ND 4.0)」</a> を採用。
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
     </p>
   </div>
   
@@ -496,7 +877,7 @@ public:
   
   
     <a href="/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">前の記事</div>
+      <div class="article-nav-caption">precedente</div>
       <div class="article-nav-title">【算法导论】：红黑树</div>
     </a>
   
@@ -504,7 +885,7 @@ public:
 
 
     <section class="share">
-        <div class="share-title">シェア</div>
+        <div class="share-title">share</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=【算法导论】：B树 - WA_automat的博客&url=https%3A%2F%2Fwa-automat.github.io%2F2023%2F01%2F25%2F%25E3%2580%2590%25E7%25AE%2597%25E6%25B3%2595%25E5%25AF%25BC%25E8%25AE%25BA%25E3%2580%2591%25EF%25BC%259AB%25E6%25A0%2591%2F">
             <ion-icon name="logo-twitter"></ion-icon>
