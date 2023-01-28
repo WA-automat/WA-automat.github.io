@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>训练赛出题记</title>
+      <link href="/2023/01/29/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/"/>
+      <url>/2023/01/29/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这篇博客用于更新2023年2月6日CSOJ寒假训练赛第七场的题目与题解，为防止赛题泄漏，本篇博客会到比赛当天晚上的22:30才会发布。</p><p>本次训练赛更多考察算法思维，而非考察固定的模板与套路，持续更新中！</p><span id="more"></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 编程语言 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【算法导论】：B树</title>
       <link href="/2023/01/25/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9AB%E6%A0%91/"/>
       <url>/2023/01/25/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9AB%E6%A0%91/</url>
