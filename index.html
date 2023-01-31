@@ -86,9 +86,7 @@
 
     </script>
 
-<meta name="generator" content="Hexo 6.3.0">
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -200,7 +198,9 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
+</style>
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
 
 <body>
 
@@ -391,6 +391,77 @@ class="article article-type-post"
     
         <div class="article-tag">
         <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%8B%E7%BB%8D/" rel="tag">介绍</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-【算法导论】：斐波那契堆"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+    <div class="article-feature">
+        <a href="/2023/01/31/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/">
+            <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E"
+                data-src="/2023/01/31/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86%E7%BB%93%E6%9E%84.png"
+                alt="item.title"
+                class="lazy"
+            />
+        </a>
+    </div>
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/2023/01/31/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/">【算法导论】：斐波那契堆</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h1 id="斐波那契堆"><a href="#斐波那契堆" class="headerlink" title="斐波那契堆"></a>斐波那契堆</h1><p>斐波那契堆是一系列具有最小堆序的有根树的集合。每一棵树均遵循最小堆属性；每个节点的关键字大于或等于它的父节点关键字。</p>
+<h2 id="斐波那契堆的结构说明"><a href="#斐波那契堆的结构说明" class="headerlink" title="斐波那契堆的结构说明"></a>斐波那契堆的结构说明</h2><ol>
+<li>所有树的根都连接在一起，以便更快地访问；</li>
+<li>父节点的子节点通过如下所示的循环双向链表相互连接。</li>
+</ol>
+<p>使用循环双向链表有两个主要优点：</p>
+<ol>
+<li>从树中删除一个节点需要 O(1) 时间；</li>
+<li>两个这样的列表的连接需要 O(1) 时间。</li>
+</ol>
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2023-01-31T09:27:03.000Z" itemprop="datePublished">2023-01-31</time>
+</div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%95%83%E4%B9%A6/" rel="tag">啃书</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" rel="tag">编程语言</a></li></ul>
         </div>
     
     </div>
@@ -641,6 +712,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/2023/01/31/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/">【算法导论】：斐波那契堆</a>
+          </li>
+        
+          <li>
             <a href="/2023/01/28/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/">训练赛出题记</a>
           </li>
         
@@ -654,10 +729,6 @@ class="article article-type-post"
         
           <li>
             <a href="/2022/12/22/%E8%80%83%E8%AF%95%E6%91%B8%E9%B1%BC%E8%AE%B0/">考试摸鱼记</a>
-          </li>
-        
-          <li>
-            <a href="/2022/12/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客</a>
           </li>
         
       </ul>
