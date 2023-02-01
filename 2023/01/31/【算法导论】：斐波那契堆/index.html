@@ -145,7 +145,9 @@
 
     </script>
 
-<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -257,9 +259,7 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style>
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
+</style><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
 
 <body>
 
@@ -443,6 +443,7 @@ class FibNode {
 	// 公有成员
 public:
 
+	// 键值对类型
 	using Pair = pair&lt;K, V&gt;;
 
 	// 数据域
@@ -469,7 +470,299 @@ public:
 
 };</code></pre>
 
-<h2 id="斐波那契堆完整实现"><a href="#斐波那契堆完整实现" class="headerlink" title="斐波那契堆完整实现"></a>斐波那契堆完整实现</h2><pre class="language-c++" data-language="c++"><code class="language-c++"></code></pre>
+<h2 id="斐波那契堆完整实现"><a href="#斐波那契堆完整实现" class="headerlink" title="斐波那契堆完整实现"></a>斐波那契堆完整实现</h2><pre class="language-c++" data-language="c++"><code class="language-c++">template&lt;typename K, typename V&gt;
+class FibHeap {
+
+	// 公有成员
+public:
+
+	// 键值对类型
+	using Pair = pair&lt;K, V&gt;;
+
+	// 指针类型
+	using pointer = FibNode&lt;K, V&gt;*;
+
+	// 构造函数
+	FibHeap() : size(0), min(nullptr) {}
+
+	// 析构函数
+	~FibHeap() = default;
+
+	// 插入一个元素
+	void insert(const K&amp; key, const V&amp; val) {
+
+		// 新建一个节点
+		pointer p = new FibNode&lt;K, V&gt;(key, val);
+
+		// 加入链表中
+		listAdd(min, p);
+		if (min-&gt;kv.first &gt; key) {
+			min = p;
+		}
+		++size;
+	}
+
+	// 删除并返回最小节点
+	Pair extractMin(void) {
+
+		// 默认的一个键值对
+		Pair ret = make_pair(K(), V());
+
+		// 最小节点
+		pointer p = min;
+
+		// 最小值存在时才进入
+		// 最小节点不存在时返回默认键值对
+		if (p) {
+
+			// 更改键值对
+			ret = p-&gt;kv;
+
+			if (p-&gt;child) {
+
+				pointer x = p-&gt;child, y = x-&gt;right;
+
+				for (int i = 0; i &lt; p-&gt;degree; ++i) {
+
+					listAdd(min, x);
+
+					x-&gt;parent = nullptr;
+					x = y;
+					y = y-&gt;right;
+
+				}
+
+			}
+
+			if (p-&gt;right == p) min = nullptr;
+			else {
+
+				min = p-&gt;right;
+				listDelete(p);
+				consolidate();
+
+			}
+
+			delete p;
+			--size;
+
+		}
+
+		return ret;
+	}
+
+	// 删除一个节点
+	void remove(const K&amp; key) {
+
+		// 查找到当前结点
+		pointer p = search(min, key);
+
+		// 若查找不到
+		if (p == nullptr) return;
+
+		// 这里其实应该是K这个类型的最小值
+		// 但由于是不定的，所以这里暂时用默认值代替
+		decreaseKey(p, K());
+		extractMin();
+
+	}
+
+	static FibHeap heapUnion(FibHeap&amp; a, FibHeap&amp; b) {
+
+		// 若其中一个不存在，则返回另一个
+		if (a.min == nullptr) return b;
+		if (b.min == nullptr) return a;
+
+		// 都存在则合并
+		a.listUnion(a.min, b.min);
+
+		// 找到当前最小值
+		if (a.min-&gt;kv.first &gt; b.min-&gt;kv.first) {
+			a.min = b.min;
+		}
+
+		a.size += b.size;
+
+		return a;
+	}
+
+	// 私有成员
+private:
+
+	// 结点个数
+	int size;
+
+	// 最小元素指针
+	pointer min;
+
+	// 一些辅助函数
+	// 循环链表添加一个节点
+	void listAdd(pointer&amp; r, pointer&amp; p) {
+
+		// 当链表为空时
+		if (r == nullptr) {
+			r = p;
+			r-&gt;left = r;
+			r-&gt;right = r;
+		}
+
+		// 当链表不为空时
+		else {
+			pointer x = r;
+			p-&gt;right = x-&gt;right;
+			p-&gt;left = x;
+			x-&gt;right-&gt;left = p;
+			x-&gt;right = p;
+		}
+
+	}
+
+	// 循环链表删除一个节点
+	void listDelete(pointer p) {
+		p-&gt;left-&gt;right = p-&gt;right;
+		p-&gt;right-&gt;left = p-&gt;left;
+	}
+
+	// 循环链表合并
+	void listUnion(pointer x, pointer y) {
+
+		// 当x为空链表
+		if (x == nullptr) x = y;
+		else {
+
+			pointer tail = x-&gt;left;
+			x-&gt;left-&gt;right = y;
+			y-&gt;left-&gt;right = x;
+			x-&gt;left = y-&gt;left;
+			y-&gt;left = tail;
+
+		}
+
+	}
+
+	// 最大度数
+	int Dn(void) { 
+		return log2(size) + 1; 
+	}
+
+	// 将y变为x的孩子
+	void heapLink(pointer y, pointer x) {
+
+		listDelete(y);
+		listAdd(x-&gt;child, y);
+		++(x-&gt;degree);
+		y-&gt;mark = false;
+
+	}
+
+	// 将多个树链接成一棵树
+	// 数组a中存储多个树根
+	void consolidate(void) {
+
+		vector&lt;pointer&gt; a(Dn(), nullptr);
+		pointer x, y, z;
+		int d;
+		pointer sentry = new FibNode&lt;K, V&gt;();
+
+		listAdd(min-&gt;left, sentry);
+		for (x = min; x != sentry; x = z) {
+			z = x-&gt;right;
+			d = x-&gt;degree;
+			while (a[d] != nullptr) {
+				y = a[d];
+				if (x-&gt;kv.first &gt; y-&gt;kv.first) swap(x, y);
+				heapLink(y, x);
+				a[d] = nullptr;
+				++d;
+			}
+			a[d] = x;
+		}
+
+		min = nullptr;
+		for (int i = 0; i &lt; a.size(); ++i) {
+			if (a[i] != nullptr) {
+				listAdd(min, a[i]);
+				if (a[i]-&gt;kv.first &lt; min-&gt;kv.first) min = a[i];
+			}
+		}
+
+		delete sentry;
+	}
+
+	// 将x变为其中一个根节点树
+	void cut(pointer x, pointer y) {
+
+		listDelete(x);
+		--(y-&gt;degree);
+		listAdd(min, x);
+		x-&gt;parent = nullptr;
+		x-&gt;mark = false;
+
+	}
+
+	// 递归的切断
+	void cascadingCut(pointer y) {
+		
+		pointer z = y-&gt;parent;
+		
+		// 当y不为根节点时
+		if (z) {
+
+			if (y-&gt;mark == false) y-&gt;mark = true;
+			else {
+
+				cut(y, z);
+				cascadingCut(z);
+			
+			}
+
+		}
+
+	}
+
+	// 查找辅助函数
+	pointer search(pointer r, const K&amp; key) {
+		
+		// 当节点为空
+		if (r == nullptr) return r;
+
+		pointer x = r, y;
+		
+		do {
+
+			if (x-&gt;kv.first == key) {
+				return x;
+			}
+			else if (x-&gt;kv.first &lt; key) {
+				y = search(x-&gt;child, key);
+				if (y) return y;
+			}
+			x = x-&gt;right;
+
+		} while (x != r);
+
+		return nullptr;
+
+	}
+
+	// 改变当前键
+	void decreaseKey(pointer x, const K&amp; key) {
+
+		// 当新键大于当前键时，直接返回
+		if (key &gt;= x-&gt;kv.first) return;
+
+		x-&gt;kv.first = key;
+		pointer y = x-&gt;parent;
+
+		if (y &amp;&amp; y-&gt;kv.first &gt; x-&gt;kv.first) {
+			cut(x, y);
+			cascadingCut(y);
+		}
+		if (x-&gt;kv.first &lt; min-&gt;kv.first) min = x;
+
+	}
+
+};</code></pre>
 
 
         </div>
@@ -497,7 +790,7 @@ public:
   
   
     <a href="/2023/01/28/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">precedente</div>
+      <div class="article-nav-caption">前の記事</div>
       <div class="article-nav-title">训练赛出题记</div>
     </a>
   
@@ -505,7 +798,7 @@ public:
 
 
     <section class="share">
-        <div class="share-title">share</div>
+        <div class="share-title">シェア</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=【算法导论】：斐波那契堆 - WA_automat的博客&url=https%3A%2F%2Fwa-automat.github.io%2F2023%2F01%2F31%2F%25E3%2580%2590%25E7%25AE%2597%25E6%25B3%2595%25E5%25AF%25BC%25E8%25AE%25BA%25E3%2580%2591%25EF%25BC%259A%25E6%2596%2590%25E6%25B3%25A2%25E9%2582%25A3%25E5%25A5%2591%25E5%25A0%2586%2F">
             <ion-icon name="logo-twitter"></ion-icon>
