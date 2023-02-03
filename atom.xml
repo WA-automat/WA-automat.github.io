@@ -6,7 +6,7 @@
   <link href="https://wa-automat.github.io/atom.xml" rel="self"/>
   
   <link href="https://wa-automat.github.io/"/>
-  <updated>2023-02-02T06:19:17.763Z</updated>
+  <updated>2023-02-03T03:00:36.527Z</updated>
   <id>https://wa-automat.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://wa-automat.github.io/2023/02/02/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9Avan-Emde-Boas%E6%A0%91/"/>
     <id>https://wa-automat.github.io/2023/02/02/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9Avan-Emde-Boas%E6%A0%91/</id>
     <published>2023-02-02T06:07:47.000Z</published>
-    <updated>2023-02-02T06:19:17.763Z</updated>
+    <updated>2023-02-03T03:00:36.527Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;van-Emde-Boas树&quot;&gt;&lt;a href=&quot;#van-Emde-Boas树&quot; class=&quot;headerlink&quot; title=&quot;van Emde Boas树&quot;&gt;&lt;/a&gt;van Emde Boas树&lt;/h1&gt;&lt;p&gt;本章重点还是探究如何实现树结构且时间复杂度为：&lt;mjx-container class=&quot;MathJax&quot; jax=&quot;SVG&quot;&gt;&lt;svg style=&quot;vertical-align: -0.566ex;&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;10.552ex&quot; height=&quot;2.262ex&quot; role=&quot;img&quot; focusable=&quot;false&quot; viewBox=&quot;0 -750 4664 1000&quot;&gt;&lt;g stroke=&quot;currentColor&quot; fill=&quot;currentColor&quot; stroke-width=&quot;0&quot; transform=&quot;scale(1,-1)&quot;&gt;&lt;g data-mml-node=&quot;math&quot;&gt;&lt;g data-mml-node=&quot;mi&quot;&gt;&lt;path data-c=&quot;1D442&quot; d=&quot;M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(763,0)&quot;&gt;&lt;path data-c=&quot;28&quot; d=&quot;M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(1152,0)&quot;&gt;&lt;path data-c=&quot;1D459&quot; d=&quot;M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(1450,0)&quot;&gt;&lt;path data-c=&quot;1D45C&quot; d=&quot;M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(1935,0)&quot;&gt;&lt;path data-c=&quot;1D454&quot; d=&quot;M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(2412,0)&quot;&gt;&lt;path data-c=&quot;1D459&quot; d=&quot;M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(2710,0)&quot;&gt;&lt;path data-c=&quot;1D45C&quot; d=&quot;M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(3195,0)&quot;&gt;&lt;path data-c=&quot;1D454&quot; d=&quot;M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mi&quot; transform=&quot;translate(3672,0)&quot;&gt;&lt;path data-c=&quot;1D707&quot; d=&quot;M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;g data-mml-node=&quot;mo&quot; transform=&quot;translate(4275,0)&quot;&gt;&lt;path data-c=&quot;29&quot; d=&quot;M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/mjx-container&gt;的树形结构。&lt;/p&gt;
@@ -50,7 +50,7 @@
     <link href="https://wa-automat.github.io/2023/01/31/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/"/>
     <id>https://wa-automat.github.io/2023/01/31/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86/</id>
     <published>2023-01-31T09:27:03.000Z</published>
-    <updated>2023-02-01T06:35:17.336Z</updated>
+    <updated>2023-02-03T03:00:36.535Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;斐波那契堆&quot;&gt;&lt;a href=&quot;#斐波那契堆&quot; class=&quot;headerlink&quot; title=&quot;斐波那契堆&quot;&gt;&lt;/a&gt;斐波那契堆&lt;/h1&gt;&lt;p&gt;斐波那契堆是一系列具有最小堆序的有根树的集合。每一棵树均遵循最小堆属性；每个节点的关键字大于或等于它的父节点关键字。&lt;/p&gt;
@@ -84,7 +84,7 @@
     <link href="https://wa-automat.github.io/2023/01/28/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/"/>
     <id>https://wa-automat.github.io/2023/01/28/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/</id>
     <published>2023-01-28T15:30:21.000Z</published>
-    <updated>2023-02-03T01:31:26.721Z</updated>
+    <updated>2023-02-03T05:21:01.579Z</updated>
     
     
     <summary type="html">&lt;p&gt;现在是2023年1月28日，在这里也提前祝大家元宵节快乐！&lt;/p&gt;
@@ -109,7 +109,7 @@
     <link href="https://wa-automat.github.io/2023/01/25/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9AB%E6%A0%91/"/>
     <id>https://wa-automat.github.io/2023/01/25/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9AB%E6%A0%91/</id>
     <published>2023-01-25T08:54:20.000Z</published>
-    <updated>2023-01-31T10:56:06.112Z</updated>
+    <updated>2023-02-03T03:00:36.577Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文是《算法导论》的第二篇啃书博客，主要分享B树的各种操作实现，持续更新中！&lt;/p&gt;
@@ -144,7 +144,7 @@
     <link href="https://wa-automat.github.io/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/"/>
     <id>https://wa-automat.github.io/2023/01/19/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/</id>
     <published>2023-01-19T06:31:34.000Z</published>
-    <updated>2023-01-31T10:56:06.100Z</updated>
+    <updated>2023-02-03T03:00:36.559Z</updated>
     
     
     <summary type="html">&lt;p&gt;摸鱼摸了大半个月了，开始学大黑书《算法导论》，从这篇博客开始，后续会不断更新算法导论中比较有用的数据结构或算法的代码部分（主要），理论部分会进行一些讲解，但书上出现过的就不会再重复说明。&lt;/p&gt;
@@ -171,7 +171,7 @@
     <link href="https://wa-automat.github.io/2022/12/22/%E8%80%83%E8%AF%95%E6%91%B8%E9%B1%BC%E8%AE%B0/"/>
     <id>https://wa-automat.github.io/2022/12/22/%E8%80%83%E8%AF%95%E6%91%B8%E9%B1%BC%E8%AE%B0/</id>
     <published>2022-12-22T07:53:02.000Z</published>
-    <updated>2023-01-31T10:56:06.226Z</updated>
+    <updated>2023-02-03T03:00:36.543Z</updated>
     
     
     <summary type="html">&lt;p&gt;现在是2022年12月22日下午15点55分，在这里先祝大家冬至快乐！！！又快到新的一年长大一岁啦！&lt;/p&gt;
@@ -193,7 +193,7 @@
     <link href="https://wa-automat.github.io/2022/12/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
     <id>https://wa-automat.github.io/2022/12/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
     <published>2022-12-18T15:36:10.000Z</published>
-    <updated>2023-01-31T10:56:06.164Z</updated>
+    <updated>2023-02-03T03:00:36.568Z</updated>
     
     
     <summary type="html">&lt;p&gt;本博客主要写: 对此博客创建的初衷与对笔者自己的介绍。&lt;br&gt;一个来自某某师专的菜鸟ACMer，创建此博客的初衷是分享学习与生活、解决各种问题的过程。&lt;/p&gt;
