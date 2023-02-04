@@ -11,5 +11,7 @@
     <orderEntry type="library" name="canvas-nest" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="anime" level="application" />
+    <orderEntry type="library" name="xuehuapiaoluo" level="application" />
+    <orderEntry type="library" name="sakura" level="application" />
   </component>
 </module>

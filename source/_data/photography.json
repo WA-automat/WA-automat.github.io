@@ -1,0 +1,58 @@
+[
+  {
+    "thumbnail": "/images/mango.jpg",
+    "photo": "https://wa-automat.github.io/images/mango.jpg",
+    "title": "我的头像",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2022/12/18/第一篇博客/wechat.jpg",
+    "photo": "https://wa-automat.github.io/2022/12/18/第一篇博客/wechat.jpg",
+    "title": "我的联系方式",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2022/12/22/考试摸鱼记/期末试题.png",
+    "photo": "https://wa-automat.github.io/2022/12/22/考试摸鱼记/期末试题.png",
+    "title": "师专大一上程序设计实验期末考试试题",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/01/19/【算法导论】：红黑树/image-20230119144453611.png",
+    "photo": "https://wa-automat.github.io/2023/01/19/【算法导论】：红黑树/image-20230119144453611.png",
+    "title": "红黑树实现结构",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/01/19/【算法导论】：红黑树/算法导论.png",
+    "photo": "https://wa-automat.github.io/2023/01/19/【算法导论】：红黑树/算法导论.png",
+    "title": "算法导论",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/01/25/【算法导论】：B树/BTree.png",
+    "photo": "https://wa-automat.github.io/2023/01/25/【算法导论】：B树/BTree.png",
+    "title": "B树实现结构",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/01/28/训练赛出题记/万恶的出题人.png",
+    "photo": "https://wa-automat.github.io/2023/01/28/训练赛出题记/万恶的出题人.png",
+    "title": "万恶的出题人",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/01/31/【算法导论】：斐波那契堆/斐波那契堆结构.png",
+    "photo": "https://wa-automat.github.io/2023/01/31/【算法导论】：斐波那契堆/斐波那契堆结构.png",
+    "title": "斐波那契堆结构",
+    "icon": "camera",
+    "place": "China"
+  }
+]

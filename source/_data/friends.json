@@ -36,7 +36,14 @@
   {
     "category": "友情链接",
     "data": [
-
+      {
+        "name": "Aurora的博客",
+        "url": "https://2aurora2.github.io/"
+      },
+      {
+        "name": "Link的博客",
+        "url": "https://link-kai.github.io/"
+      }
     ]
   }
 ]

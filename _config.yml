@@ -47,15 +47,15 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
-  hljs: false
+  hljs: true
 prismjs:
-  enable: false
+  enable: true
   preprocess: true
-  line_number: true
+  line_number: false
   tab_replace: ''
 
 # Home page setting
@@ -119,7 +119,7 @@ ithubEmojis:
 # 代码高亮配置
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'tomorrow'
+  theme: 'duotone-light'
   line_number: false    # default false
   custom_css:
 
@@ -137,11 +137,11 @@ aomori_logo_typed_animated: true
 aomori_menu:
   Home: /
   Archives: /archives
-  Playlist: /playlist
   Friends: /friends
+  Photography: /photography
 # 侧边栏
 aomori_widgets:
-  - toc # 文章导航
+#  - toc # 文章导航
   - category  #文章分类
   - tag # 文章标签
   - recent_posts  # 最新文章
@@ -181,10 +181,10 @@ live2d:
     use: live2d-widget-model-haru #模型选择
   display:
     position: right  #模型位置
-    width: 150       #模型宽度
-    height: 300      #模型高度
-    hOffset: 230 # 水平偏移量, 自己微调
-    vOffset: 60 # 垂直偏移量, 自己微调
+    width: 175       #模型宽度
+    height: 350      #模型高度
+    hOffset: 170 # 水平偏移量, 自己微调
+    vOffset: 50 # 垂直偏移量, 自己微调
   mobile:
     show: false      #是否在手机端显示
     scale: 0.5
@@ -209,6 +209,7 @@ aomori_gitalk:
     - WA-automat
   distractionFreeMode: true // Facebook-like distraction free mode
   language: cn
+  proxy: "https://myblog.wa-automat.workers.dev/?https://github.com/login/oauth/access_token"
 
 # markdown数学公式
 mathjax:
@@ -226,23 +227,43 @@ mathjax:
 aplayer:
   meting: true
 # Whether to display the musics.
-# 是否在首页显示音乐.
-music:
-  enable: true
-  title: #非吸底模式有效
-    enable: true
-    show: 听听音乐
-    autoHide: true  # hide automaticaly
-    server: netease  #require    music platform: netease, tencent, kugou, xiami, baidu
-    type: playlist #require song, playlist, album, search, artist
-    id: 2621145115 #require  song id / playlist id / album id / search keyword
-    fixed: true  # 开启吸底模式
-    autoplay: false # 是否自动播放
-    theme: '#42b983'
-    loop: 'all'  # 音频循环播放, 可选值: 'all', 'one', 'none'
-    order: 'random' # 音频循环顺序, 可选值: 'list', 'random'
-    preload: 'auto'  # 预加载，可选值: 'none', 'metadata', 'auto'
-    volume: 0.5  # 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
-    listFolded: true # 列表默认折叠
-    hideLrc: true  # 隐藏歌词
+background-music: //music.163.com/outchain/player?type=2&id=473940855&auto=1&height=66
 
+# hexo-hide-posts
+hide_posts:
+  # 可以改成其他你喜欢的名字
+  filter: secret
+  # 指定你想要传递隐藏文章的位置，比如让所有隐藏文章在存档页面可见
+  # 常见的位置有：index, tag, category, archive, sitemap, feed, etc.
+  # 留空则默认全部隐藏
+  public_generators: []
+  # 为隐藏的文章添加 noindex meta 标签，阻止搜索引擎收录
+  noindex: true
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: " "
+  order_by: -date
+
+# 文章加密
+encrypt: # hexo-blog-encrypt
+  abstract: 这里有东西被加密了，需要输入密码查看哦。
+  message: 您好, 这里需要密码.
+  tags:
+    - {name: password, password: Lzx12345}
+    - {name: strongPassword, password: qwertlinzexun12345}
+  template: <div id="hexo-blog-encrypt" data-wpm="{{hbeWrongPassMessage}}" data-whm="{{hbeWrongHashMessage}}"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="{{hbeMessage}}" /><label>{{hbeMessage}}</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}">{{hbeEncryptedData}}</script></div>
+  theme: xray
+  wrong_pass_message: 抱歉, 这个密码看着不太对, 请再试试.
+  wrong_hash_message: 抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.
+
+lazyload:
+  enable: true
+  onlypost: false
+  loadingImg: /images/loading.png
