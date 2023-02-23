@@ -132,7 +132,7 @@
                 enable: true,
                 appId: "ovRcIDerCN21fIOoY6X6fliG-gzGzoHsz",
                 appKey: "2T8Bbb68azikCz3b6P0a0Ciu",
-                placeholder: "Hello World!",
+                placeholder: "快来给我评论啊喂！！！",
                 avatar: "",
                 pageSize: "10",
                 lang: "zh-CN",
@@ -140,7 +140,7 @@
                 highlight: false,
                 recordIP: false,
                 emojiCDN: "",
-                enableQQ: false,
+                enableQQ: true,
                 requiredFields: []
             },
             
@@ -795,7 +795,7 @@ private:
 <nav class="article-nav">
   
     <a href="/2023/02/02/%E3%80%90%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E3%80%91%EF%BC%9Avan-Emde-Boas%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">prossimo</div>
+      <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
           【算法导论】：van Emde Boas树
@@ -805,7 +805,7 @@ private:
   
   
     <a href="/2023/01/28/%E8%AE%AD%E7%BB%83%E8%B5%9B%E5%87%BA%E9%A2%98%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">precedente</div>
+      <div class="article-nav-caption">上一篇</div>
       <div class="article-nav-title">训练赛出题记</div>
     </a>
   
@@ -813,7 +813,7 @@ private:
 
 
     <section class="share">
-        <div class="share-title">share</div>
+        <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=【算法导论】：斐波那契堆 - WA_automat的博客&url=https%3A%2F%2Fwa-automat.github.io%2F2023%2F01%2F31%2F%25E3%2580%2590%25E7%25AE%2597%25E6%25B3%2595%25E5%25AF%25BC%25E8%25AE%25BA%25E3%2580%2591%25EF%25BC%259A%25E6%2596%2590%25E6%25B3%25A2%25E9%2582%25A3%25E5%25A5%2591%25E5%25A0%2586%2F">
             <ion-icon name="logo-twitter"></ion-icon>
@@ -839,10 +839,53 @@ private:
 
 
 
-<section class="comments">
-    <div id="valine-container"></div>
-</section>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/flatblowfish/cave-draw/dist/cave-draw.min.js"></script>
+    <script>
+        var cdraw = new CaveDraw({
+            // 评论框
+            element: "#comment",
+            // 按钮配置
+            controls: ['brush', 'eraser', 'bucket', 'clear', 'undo', 'redo', 'save']
+        });
+        // 发现并绑定Valine评论框
+        var count = 0;
+        var domTimer = setInterval(function () {
+            if (++count > 50) clearInterval(domTimer);
+            if (document.querySelector('#veditor')) {
+                clearInterval(domTimer);
+                var cdraw = new CaveDraw({
+                    element: "#veditor",
+                    readOnlyMode: false, // valine 不提交form，而是过滤评论框数据后发送，所以评论框不能readonly。
+                    afterUpdateEditor: () => { // 手动触发valine对评论框数据的过滤
+                        document.querySelector('#veditor').focus();
+                        document.querySelector('#veditor').blur();
+                    },
+                    controls: ['brush', 'eraser', 'bucket', 'clear', 'undo', 'redo', 'save']
+                });
+            }
+        }, 200);
+    </script>
+    <style>
+        /* 设置评论框高度 */
+        .v[data-class="v"] .veditor {
+            max-height: 17em;
+            overflow-y: scroll;
+        }
+
+        /* 去除查看更多 */
+        .v[data-class="v"] .vcards .vcard .vcontent.expand {
+            max-height: none;
+        }
+
+        .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+        .v[data-class="v"] .vcards .vcard .vcontent.expand::after {
+            display: none;
+        }
+    </style>
+    <section class="comments">
+        <div id="valine-container"></div>
+    </section>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 
 

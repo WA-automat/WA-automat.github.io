@@ -85,7 +85,7 @@
                 enable: true,
                 appId: "ovRcIDerCN21fIOoY6X6fliG-gzGzoHsz",
                 appKey: "2T8Bbb68azikCz3b6P0a0Ciu",
-                placeholder: "Hello World!",
+                placeholder: "快来给我评论啊喂！！！",
                 avatar: "",
                 pageSize: "10",
                 lang: "zh-CN",
@@ -93,7 +93,7 @@
                 highlight: false,
                 recordIP: false,
                 emojiCDN: "",
-                enableQQ: false,
+                enableQQ: true,
                 requiredFields: []
             },
             
@@ -372,7 +372,7 @@ mjx-container[display="true"] + br {
 <nav class="article-nav">
   
     <a href="/2023/02/23/Pytorch%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-caption">prossimo</div>
+      <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
           Pytorch基础数据结构
@@ -382,7 +382,7 @@ mjx-container[display="true"] + br {
   
   
     <a href="/2023/02/16/%E6%83%85%E4%BA%BA%E8%8A%82%E8%B4%B4%E8%B4%B4%EF%BC%81%EF%BC%81%EF%BC%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">precedente</div>
+      <div class="article-nav-caption">上一篇</div>
       <div class="article-nav-title">情人节贴贴！！！</div>
     </a>
   
@@ -390,7 +390,7 @@ mjx-container[display="true"] + br {
 
 
     <section class="share">
-        <div class="share-title">share</div>
+        <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=2023美赛C题 - WA_automat的博客&url=https%3A%2F%2Fwa-automat.github.io%2F2023%2F02%2F20%2F2023%25E7%25BE%258E%25E8%25B5%259BC%25E9%25A2%2598%2F">
             <ion-icon name="logo-twitter"></ion-icon>
@@ -416,10 +416,53 @@ mjx-container[display="true"] + br {
 
 
 
-<section class="comments">
-    <div id="valine-container"></div>
-</section>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/flatblowfish/cave-draw/dist/cave-draw.min.js"></script>
+    <script>
+        var cdraw = new CaveDraw({
+            // 评论框
+            element: "#comment",
+            // 按钮配置
+            controls: ['brush', 'eraser', 'bucket', 'clear', 'undo', 'redo', 'save']
+        });
+        // 发现并绑定Valine评论框
+        var count = 0;
+        var domTimer = setInterval(function () {
+            if (++count > 50) clearInterval(domTimer);
+            if (document.querySelector('#veditor')) {
+                clearInterval(domTimer);
+                var cdraw = new CaveDraw({
+                    element: "#veditor",
+                    readOnlyMode: false, // valine 不提交form，而是过滤评论框数据后发送，所以评论框不能readonly。
+                    afterUpdateEditor: () => { // 手动触发valine对评论框数据的过滤
+                        document.querySelector('#veditor').focus();
+                        document.querySelector('#veditor').blur();
+                    },
+                    controls: ['brush', 'eraser', 'bucket', 'clear', 'undo', 'redo', 'save']
+                });
+            }
+        }, 200);
+    </script>
+    <style>
+        /* 设置评论框高度 */
+        .v[data-class="v"] .veditor {
+            max-height: 17em;
+            overflow-y: scroll;
+        }
+
+        /* 去除查看更多 */
+        .v[data-class="v"] .vcards .vcard .vcontent.expand {
+            max-height: none;
+        }
+
+        .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+        .v[data-class="v"] .vcards .vcard .vcontent.expand::after {
+            display: none;
+        }
+    </style>
+    <section class="comments">
+        <div id="valine-container"></div>
+    </section>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 
 
