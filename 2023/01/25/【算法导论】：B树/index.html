@@ -117,8 +117,6 @@
     
 
     
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    
 
     
 
@@ -134,16 +132,22 @@
         window.isPost = true
         window.aomori = {
             
-            gitalk: {
-                enable: true,
-                clientID: "46b5fc59dfefb7f8a614",
-                clientSecret: "1a7e1ccc7cc0f8ae25dccc45d68c6861db2c8375",
-                repo: "blog-comments",
-                owner: "WA-automat",
-                admin: ["WA-automat",],
-                distractionFreeMode: true // Facebook-like distraction free mode  // Facebook-like distraction free mode
-            },
             
+            valine: {
+                enable: true,
+                appId: "ovRcIDerCN21fIOoY6X6fliG-gzGzoHsz",
+                appKey: "2T8Bbb68azikCz3b6P0a0Ciu",
+                placeholder: "Hello World!",
+                avatar: "",
+                pageSize: "10",
+                lang: "zh-CN",
+                visitor: false,
+                highlight: false,
+                recordIP: false,
+                emojiCDN: "",
+                enableQQ: false,
+                requiredFields: []
+            },
             
             
         }
@@ -920,11 +924,12 @@ private:
 
 
 
+
+
 <section class="comments">
-    <div id="gitalk-container"></div>
+    <div id="valine-container"></div>
 </section>
-
-
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 
 
@@ -1063,8 +1068,6 @@ private:
 
 <script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
 
-
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
 
 
