@@ -14,9 +14,6 @@
             emojiCDN: window.aomori.valine.emojiCDN,
             enableQQ: window.aomori.valine.enableQQ,
             requiredFields: window.aomori.valine.requiredFields,
-            master: window.aomori.valine.master,
-            tagMeta: window.aomori.valine.tagMeta,
-            friend: window.aomori.valine.friend,
         })
     }
 })()
