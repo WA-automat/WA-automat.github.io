@@ -54,5 +54,89 @@
     "title": "斐波那契堆结构",
     "icon": "camera",
     "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/02/【算法导论】：van-Emde-Boas树/原型vEB.png",
+    "photo": "https://wa-automat.github.io/2023/02/02/【算法导论】：van-Emde-Boas树/原型vEB.png",
+    "title": "原型vEB",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/02/【算法导论】：van-Emde-Boas树/vEB.png",
+    "photo": "https://wa-automat.github.io/2023/02/02/【算法导论】：van-Emde-Boas树/vEB.png",
+    "title": "vEB",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/09/【机器学习】：决策树模型/Optimal-tree-depth.png",
+    "photo": "https://wa-automat.github.io/2023/02/09/【机器学习】：决策树模型/Optimal-tree-depth.png",
+    "title": "Optimal-tree-depth",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/09/【机器学习】：决策树模型/feature-weight.png",
+    "photo": "https://wa-automat.github.io/2023/02/09/【机器学习】：决策树模型/feature-weight.png",
+    "title": "feature-weight",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/16/情人节贴贴！！！/合照.jpg",
+    "photo": "https://wa-automat.github.io/2023/02/16/情人节贴贴！！！/合照.jpg",
+    "title": "合照",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/16/情人节贴贴！！！/女友穿我衣服.jpg",
+    "photo": "https://wa-automat.github.io/2023/02/16/情人节贴贴！！！/女友穿我衣服.jpg",
+    "title": "女友穿我衣服",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/16/情人节贴贴！！！/浪客剑心.jpg",
+    "photo": "https://wa-automat.github.io/2023/02/16/情人节贴贴！！！/浪客剑心.jpg",
+    "title": "浪客剑心",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/16/情人节贴贴！！！/米米戒指.jpg",
+    "photo": "https://wa-automat.github.io/2023/02/16/情人节贴贴！！！/米米戒指.jpg",
+    "title": "米米戒指",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/16/情人节贴贴！！！/见面啦.jpg",
+    "photo": "https://wa-automat.github.io/2023/02/16/情人节贴贴！！！/见面啦.jpg",
+    "title": "见面啦",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/02/27/【深度学习】：多层感知机/多层感知机.png",
+    "photo": "https://wa-automat.github.io/2023/02/27/【深度学习】：多层感知机/多层感知机.png",
+    "title": "多层感知机",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/03/06/卷积神经网络/LeNet简化.png",
+    "photo": "https://wa-automat.github.io/2023/03/06/卷积神经网络/LeNet简化.png",
+    "title": "LeNet简化",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/03/06/卷积神经网络/LeNet.png",
+    "photo": "https://wa-automat.github.io/2023/03/06/卷积神经网络/LeNet.png",
+    "title": "LeNet",
+    "icon": "camera",
+    "place": "China"
   }
 ]

@@ -13,5 +13,7 @@
     <orderEntry type="library" name="anime" level="application" />
     <orderEntry type="library" name="xuehuapiaoluo" level="application" />
     <orderEntry type="library" name="sakura" level="application" />
+    <orderEntry type="library" name="cave-draw" level="application" />
+    <orderEntry type="library" name="Valine" level="application" />
   </component>
 </module>

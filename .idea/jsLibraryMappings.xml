@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{anime, canvas-nest, jquery, sakura, xuehuapiaoluo}" />
+    <file url="PROJECT" libraries="{Valine, anime, canvas-nest, cave-draw, jquery, sakura, xuehuapiaoluo}" />
   </component>
 </project>
