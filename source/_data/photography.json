@@ -138,5 +138,33 @@
     "title": "LeNet",
     "icon": "camera",
     "place": "China"
+  },
+  {
+    "thumbnail": "/2023/03/07/ResNet残差网络/残差块.png",
+    "photo": "https://wa-automat.github.io/2023/03/07/ResNet残差网络/残差块.png",
+    "title": "残差块",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/03/07/ResNet残差网络/卷积层残差块.png",
+    "photo": "https://wa-automat.github.io/2023/03/07/ResNet残差网络/卷积层残差块.png",
+    "title": "卷积层残差块",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/03/07/ResNet残差网络/ResNet-18架构.png",
+    "photo": "https://wa-automat.github.io/2023/03/07/ResNet残差网络/ResNet-18架构.png",
+    "title": "ResNet-18架构",
+    "icon": "camera",
+    "place": "China"
+  },
+  {
+    "thumbnail": "/2023/03/20/【微信小程序】：puppyhome/puppyhome.png",
+    "photo": "https://wa-automat.github.io/2023/03/20/【微信小程序】：puppyhome/puppyhome.png",
+    "title": "微信小程序封面",
+    "icon": "camera",
+    "place": "China"
   }
 ]
