@@ -33,39 +33,6 @@
     
     
     <entry>
-      <title>博弈！生成对抗网络</title>
-      <link href="/2023/05/29/%E5%8D%9A%E5%BC%88%EF%BC%81%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C/"/>
-      <url>/2023/05/29/%E5%8D%9A%E5%BC%88%EF%BC%81%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>期末考后就更新！！！</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> AI模块 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 编程语言 </tag>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 人工智能 </tag>
-            
-            <tag> 深度学习 </tag>
-            
-            <tag> 啃书 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>注意！Transformer</title>
       <link href="/2023/05/27/%E6%B3%A8%E6%84%8F%EF%BC%81Transformer/"/>
       <url>/2023/05/27/%E6%B3%A8%E6%84%8F%EF%BC%81Transformer/</url>
