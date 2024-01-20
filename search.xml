@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Gumbel-max trick</title>
+      <link href="/2024/01/20/Gumbel-max-trick/"/>
+      <url>/2024/01/20/Gumbel-max-trick/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>12月因为期末没有更博客，寒假开始补上一些内容。</p><p>最近在训模型时遇到需要用01向量来作为门控的时候，发现01向量的梯度会消失，需要使用特殊的技巧来处理，师兄让俺来学一下Gumbel-max，所以有了这篇博客。</p><p>这里主要讲一下01向量实现可微分的代码实现，原理部分讲解可能不太清楚。</p><span id="more"></span><p>更新ing</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI模块 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 人工智能 </tag>
+            
+            <tag> 离散采样 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通过低秩自适应纠错实现可微调的量化大语言模型</title>
       <link href="/2023/10/23/%E9%80%9A%E8%BF%87%E4%BD%8E%E7%A7%A9%E8%87%AA%E9%80%82%E5%BA%94%E7%BA%A0%E9%94%99%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%BE%AE%E8%B0%83%E7%9A%84%E9%87%8F%E5%8C%96%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/"/>
       <url>/2023/10/23/%E9%80%9A%E8%BF%87%E4%BD%8E%E7%A7%A9%E8%87%AA%E9%80%82%E5%BA%94%E7%BA%A0%E9%94%99%E5%AE%9E%E7%8E%B0%E5%8F%AF%E5%BE%AE%E8%B0%83%E7%9A%84%E9%87%8F%E5%8C%96%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/</url>
